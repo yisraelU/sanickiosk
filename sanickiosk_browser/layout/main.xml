@@ -43,7 +43,7 @@
 						</formline>
 					</formgroup>
 					<formgroup text="No Keys">
-						<label text="Disable all keyboard shortcuts. Also disables Opera's Menu." />
+						<label text="Disable all keyboard shortcuts, including Shift+F1. Also disables Opera's Menu." />
 						<formline>
 							<checkbox bind="nokeys" />
 						</formline>
@@ -67,7 +67,10 @@
 						</formline>
 					</formgroup>
 					<formgroup text="No Print">
-						<label text="Disable print buttons." />
+<!--
+						<label text="Disable printing. When enabling printing also remember to unhide the Print and Print Preview toolbar buttons." />
+-->
+						<label text="Disable printing. Printing is not supported in Sanickiosk 2.5." />
 						<formline>
 							<checkbox bind="noprint" />
 						</formline>
@@ -79,7 +82,7 @@
 						</formline>
 					</formgroup>
 					<formgroup text="No Opera:Config">
-						<label text="Block access to opera:config. If this option is deselected opera:config will open as read-only if kiosk mode is enabled." />
+						<label text="Block access to opera:config. NOTE: Changes to opera:config do not persist after reboot." />
 						<formline>
 							<checkbox bind="disable_config_url" />
 						</formline>
@@ -136,6 +139,16 @@
 					<formgroup text="Hide Zoom Slider">
 						<formline>
 							<checkbox bind="hide_zoom" />
+						</formline>
+					</formgroup>
+					<formgroup text="Hide Print Preview Button">
+						<formline>
+							<checkbox bind="hide_ppreview" />
+						</formline>
+					</formgroup>
+					<formgroup text="Hide Print Button">
+						<formline>
+							<checkbox bind="hide_print" />
 						</formline>
 					</formgroup>
 					<formgroup text="Hide Reset Button">
