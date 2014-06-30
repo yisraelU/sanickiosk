@@ -12,7 +12,7 @@ class SanickioskScreensaverPrefs (SectionPlugin):
 		'fullscreen': True,
 		'browser_reset': True,
 		'browser_idle': '2',
-		'nokeys': True,
+		'nokeys': False,
 		'nocontextmenu': True,
 		'nomenu': True,
 		'nodownload': True,
@@ -29,6 +29,8 @@ class SanickioskScreensaverPrefs (SectionPlugin):
 		'hide_addressbar': False,
 		'hide_find': False,
 		'hide_zoom': False,
+		'hide_ppreview': True,
+		'hide_print': True,
 		'hide_reset': False,
 		'custom_user_agent': '',
 	}
@@ -60,4 +62,3 @@ class SanickioskScreensaverPrefs (SectionPlugin):
 	@on('filters_edit', 'click')
 	def filters_edit(self):
 		self.context.launch('notepad', path='/home/kiosk/.opera/urlfilter.ini')
-
