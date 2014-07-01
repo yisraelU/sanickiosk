@@ -6,7 +6,7 @@ from ajenti.ui.binder import Binder
 @plugin
 class SanickioskScreensaverPrefs (SectionPlugin):
 	default_classconfig = {
-		'home_url': 'http://links.sanicki.com/sanickiosk',
+		'home_url': 'http://sanickiosk.org',
 		'kioskspeeddial': False,
 		'kioskmode': True,
 		'fullscreen': True,
