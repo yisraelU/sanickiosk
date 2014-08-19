@@ -67,10 +67,10 @@
 						</formline>
 					</formgroup>
 					<formgroup text="No Print">
-<!--
 						<label text="Disable printing. When enabling printing also remember to unhide the Print and Print Preview toolbar buttons." />
--->
+<!--
 						<label text="Disable printing. Printing is not supported in Sanickiosk 2.5." />
+-->
 						<formline>
 							<checkbox bind="noprint" />
 						</formline>
