@@ -141,11 +141,13 @@
 							<checkbox bind="hide_zoom" />
 						</formline>
 					</formgroup>
+<!--
 					<formgroup text="Hide Print Preview Button">
 						<formline>
 							<checkbox bind="hide_ppreview" />
 						</formline>
 					</formgroup>
+-->
 					<formgroup text="Hide Print Button">
 						<formline>
 							<checkbox bind="hide_print" />
