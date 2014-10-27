@@ -1,0 +1,57 @@
+<vc>
+	<body>
+		<pad>
+		<bind:dict bind="classconfig">
+			<tabs>
+				<tab title="Screensaver Settings">
+					<formgroup text="Enable Screensaver">
+						<formline>
+							<checkbox bind="xscreensaver_enable" />
+						</formline>
+					</formgroup>
+					<formgroup text="Screensaver Idle Timeout">
+						<label text="Start the screensaver if the kiosk is idle for a period of time (in H:MM:SS)." />
+						<formline text="Default is 0:10:00">
+							<textbox bind="xscreensaver_idle" />
+						</formline>
+					</formgroup>
+				</tab>
+				<tab title="Slideshow Settings">
+					<formgroup text="Duration">
+						<label text="How long (in seconds) each image will be displayed before loading a new one." />
+						<formline text="Default is 30">
+							<textbox bind="glslideshow_duration" />
+						</formline>
+					</formgroup>
+					<formgroup text="Pan">
+						<label text="How long (in seconds) each pan-and-zoom should last. Must be greater than Fade." />
+						<formline text="Default is 6">
+							<textbox bind="glslideshow_pan" />
+						</formline>
+					</formgroup>
+					<formgroup text="Fade">
+						<label text="How long each cross-fade between images should last. Must be less than Pan." />
+						<formline text="Default is 2">
+							<textbox bind="glslideshow_fade" />
+						</formline>
+					</formgroup>
+					<formgroup text="Zoom">
+						<label text="Amount to zoom as a percentage. If set to 100 percent, no panning will occur." />
+						<formline text="Default is 75">
+							<textbox bind="glslideshow_zoom" />
+						</formline>
+					</formgroup>
+					<formgroup text="Letterbox/Clip">
+						<label text=" If set to clip, when an image is not the same aspect ratio as the screen the image will be automatically cropped to fit." />
+						<label text="If set to letterbox, black bars will appear at the top and bottom or left and right so the entire image may be displayed." />
+						<formline text="Enable Clip">
+							<checkbox text="Default is Letterbox" bind="glslideshow_clip" />
+						</formline>
+					</formgroup>
+				</tab>
+			</tabs>
+		</bind:dict>
+		</pad>
+	</body>
+	<button id="save" text="{Save Settings}" icon="hdd" />
+</vc>

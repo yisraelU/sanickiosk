@@ -1,0 +1,199 @@
+<vc>
+	<body>
+		<pad>
+		<bind:dict bind="classconfig">
+			<tabs>
+				<tab title="Home Page">
+					<formgroup text="Home Page">
+						<label text="The default URL used when the browser starts or the home button is pressed." />
+						<formline>
+							<textbox bind="home_url" />
+						</formline>
+					</formgroup>
+					<formgroup text="Enable Opera Speed Dial">
+						<label text="Rather than a single home page use a grid of multiple web page thumbnails." />
+						<formline>
+							<checkbox text="Overrides Home Page" bind="kioskspeeddial" />
+						</formline>
+						<button id="speeddial_edit" text="{Edit Speed Dial}" icon="pencil" style="normal big" />
+					</formgroup>
+				</tab>
+				<tab title="Kiosk Mode">
+					<formgroup text="Enable Kiosk Mode">
+						<formline>
+							<checkbox text="Disable if using Speed Dial" bind="kioskmode" />
+						</formline>
+					</formgroup>
+					<formgroup text="Use Fullscreen Mode">
+						<label text="Start the browser in full screen mode." />
+						<formline>
+							<checkbox text="Disable if using Speed Dial" bind="fullscreen" />
+						</formline>
+					</formgroup>
+					<formgroup text="Idle Reset">
+						<label text="Restart the browser if the kiosk is idle for a period of time." />
+						<formline>
+							<checkbox text="Enable Idle Reset" bind="browser_reset" />
+						</formline>
+					</formgroup>
+					<formgroup text="Idle Reset Timeout">
+						<label text="The amount of time to wait (in minutes) before restarting the browser." />
+						<formline>
+							<textbox bind="browser_idle" />
+						</formline>
+					</formgroup>
+					<formgroup text="No Keys">
+						<label text="Disable all keyboard shortcuts, including Shift+F1. Also disables Opera's Menu." />
+						<formline>
+							<checkbox bind="nokeys" />
+						</formline>
+					</formgroup>
+					<formgroup text="No Context Menu">
+						<label text="Remove all context (right-click) menus." />
+						<formline>
+							<checkbox bind="nocontextmenu" />
+						</formline>
+					</formgroup>
+					<formgroup text="No Menu">
+						<label text="Disable Opera's menu. Also prevents the content blocker from being accessed, so filters cannot be changed. Strongly recommended." />
+						<formline>
+							<checkbox bind="nomenu" />
+						</formline>
+					</formgroup>
+					<formgroup text="No Download">
+						<label text="Disable download dialogs and abort all downloads silently. Also prevents installation of Opera widgets and setup files." />
+						<formline>
+							<checkbox bind="nodownload" />
+						</formline>
+					</formgroup>
+					<formgroup text="No Print">
+						<label text="Disable printing. When enabling printing also remember to unhide the Print and Print Preview toolbar buttons." />
+<!--
+						<label text="Disable printing. Printing is not supported in Sanickiosk 2.5." />
+-->
+						<formline>
+							<checkbox bind="noprint" />
+						</formline>
+					</formgroup>
+					<formgroup text="No Mail Links">
+						<label text="Disable 'mailto:' links." />
+						<formline>
+							<checkbox bind="nomaillinks" />
+						</formline>
+					</formgroup>
+					<formgroup text="No Opera:Config">
+						<label text="Block access to opera:config. NOTE: Changes to opera:config do not persist after reboot." />
+						<formline>
+							<checkbox bind="disable_config_url" />
+						</formline>
+					</formgroup>
+					<formgroup text="Flush Cache">
+						<label text="Empty the disk cache when the browser exits." />
+						<formline>
+							<checkbox bind="empty_on_exit" />
+						</formline>
+					</formgroup>
+					<formgroup text="Delete Cookies">
+						<label text="Remove all cookies when the browser exits." />
+						<formline>
+							<checkbox bind="accept_cookies_session_only" />
+						</formline>
+					</formgroup>
+				</tab>
+				<tab title="Toolbar Settings">
+					<formgroup text="Hide Entire Toolbar">
+						<formline>
+							<checkbox bind="hide_toolbar" />
+						</formline>
+					</formgroup>
+					<formgroup text="Hide Home Button">
+						<formline>
+							<checkbox bind="hide_home" />
+						</formline>
+					</formgroup>
+					<formgroup text="Hide Back Button">
+						<formline>
+							<checkbox bind="hide_back" />
+						</formline>
+					</formgroup>
+					<formgroup text="Hide Forward Button">
+						<formline>
+							<checkbox bind="hide_forward" />
+						</formline>
+					</formgroup>
+					<formgroup text="Hide Reload Button">
+						<formline>
+							<checkbox bind="hide_reload" />
+						</formline>
+					</formgroup>
+					<formgroup text="Hide Address Bar">
+						<formline>
+							<checkbox bind="hide_addressbar" />
+						</formline>
+					</formgroup>
+					<formgroup text="Hide Find Button">
+						<formline>
+							<checkbox bind="hide_find" />
+						</formline>
+					</formgroup>
+					<formgroup text="Hide Zoom Slider">
+						<formline>
+							<checkbox bind="hide_zoom" />
+						</formline>
+					</formgroup>
+<!--
+					<formgroup text="Hide Print Preview Button">
+						<formline>
+							<checkbox bind="hide_ppreview" />
+						</formline>
+					</formgroup>
+-->
+					<formgroup text="Hide Print Button">
+						<formline>
+							<checkbox bind="hide_print" />
+						</formline>
+					</formgroup>
+					<formgroup text="Hide Reset Button">
+						<formline>
+							<checkbox bind="hide_reset" />
+						</formline>
+					</formgroup>
+				</tab>
+				<tab title="User-Agent">
+					<formgroup text="Custom User-Agent">
+						<label text="Tell websites you are using a different web browser, browser version, or device." />
+						<formline>
+							<textbox bind="custom_user_agent" />
+						</formline>
+					</formgroup>
+				</tab>
+				<tab title="Filtering">
+                    <vc>
+						<formgroup text="Filtering">
+							<vc>
+								<label text="Filtering is generally best left to your Network Administrator." />
+								<label text="However, if your organization is too small to have one you may find Opera’s built-in filtering helpful." />
+							</vc>
+						</formgroup>
+						<formgroup text="Blacklisting vs Whitelisting">
+							<label text="Blacklisting means only the websites you specify will be blocked. Whitelisting means only the websites you specify will be allowed." />
+						</formgroup>
+						<formgroup text="Creating a Blacklist">
+							<label text="1. Set 'prioritize excludelist' under [prefs] to '1' so if there is a conflict the [exclude] list takes priority over the [include] list." />
+							<label text="2. In the [include] list add '*.*' so anything unspecified is allowed." />
+							<label text="3. In the [exclude] list add a line for each website to be blocked (e.g. '*.yahoo.*' to block Yahoo)." />
+						</formgroup>
+						<formgroup text="Creating a Whitelist">
+							<label text="1. Set 'prioritize excludelist' under [prefs] to '0' so if there is a conflict the [include] list takes priority over the [exclude] list." />
+							<label text="2. In the [exclude] list add '*.*' so anything unspecified is blocked." />
+							<label text="3. In the [include] list add a line for each website to be allowed (e.g. '*.google.*' to allow Google)." />
+						</formgroup>
+						<button id="filters_edit" text="{Edit filters}" icon="pencil" style="normal big" />
+					</vc>
+				</tab>
+			</tabs>
+		</bind:dict>
+		</pad>
+	</body>
+	<button id="save" text="{Save Settings}" icon="hdd" />
+</vc>
