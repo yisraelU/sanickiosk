@@ -182,6 +182,7 @@ echo -e "${red}Installing print server...${NC}\n"
 tasksel install print-server > /dev/null
 usermod -aG lpadmin administrator
 usermod -aG lp,sys kiosk
+rm -f /etc/cups/cupsd.conf
 ln -s etc/cups/cupsd.conf /etc/cups/cupsd.conf
 echo -e "${green}Done!${NC}\n"
 
