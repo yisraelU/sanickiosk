@@ -2,7 +2,7 @@
 
 ## Kioskscript, a script for building the Sanickiosk web kiosk
 ## August 2015
-## Tested on Ubuntu Server 14.04 fresh install
+## Tested on Ubuntu Minimal x64 15.04 fresh install
 ##
 ## Documentation: http://sanickiosk.org
 ## Download a ready-to-install ISO of Sanickiosk at: http://links.sanicki.com/sanickiosk-dl
@@ -13,7 +13,7 @@
 ##
 ## To use this script:
 ## sudo su
-## apt-get install git
+## apt-get install -y git
 ## git clone https://github.com/sanicki/sanickiosk.git
 ## chmod +x sanickiosk/kioskscript.sh
 ## ./sanickiosk/kioskscript.sh
@@ -99,13 +99,14 @@ find /usr/share/opera -name "webmailproviders.ini" -print0 | xargs -0 rm -rf
 find /usr/share/opera -name "bookmarks.adr" -print0 | xargs -0 rm -rf
 # Delete default Opera Speed Dial
 find /usr/share/opera -name "standard_speeddial.ini" -print0 | xargs -0 rm -rf
-# Link to Opera Speed Dial save file
+# Link Opera Speed Dial save file
 ln -s speeddial.sav /home/kiosk/.opera/speeddial.sav
-# Create the Opera filter
+# Link the Opera filter
 ln -s urlfilter.ini /home/kiosk/.opera/urlfilter.ini
 echo -e "\n${green}Done!${NC}\n"
 
 echo -e "${red}Creating Sanickiosk Scripts...${NC}\n"
+mkdir .sanickiosk
 mkdir /home/kiosk/.sanickiosk
 # Link .xsession
 ln -s .xsession /home/kiosk/.xsession
