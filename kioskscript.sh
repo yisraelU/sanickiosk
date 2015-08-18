@@ -15,8 +15,11 @@
 ## sudo su
 ## apt-get install -y git
 ## git clone https://github.com/sanicki/sanickiosk.git
-## chmod +x sanickiosk/kioskscript.sh
-## ./sanickiosk/kioskscript.sh
+## cd sanickiosk
+## apt-get install dos2unix # Because of \r woes
+## find . -type f -exec dos2unix {} \;
+## chmod +x kioskscript.sh
+## .kioskscript.sh
 
 # Pretty colors
 red='\e[0;31m'
@@ -100,9 +103,9 @@ find /usr/share/opera -name "bookmarks.adr" -print0 | xargs -0 rm -rf
 # Delete default Opera Speed Dial
 find /usr/share/opera -name "standard_speeddial.ini" -print0 | xargs -0 rm -rf
 # Link Opera Speed Dial save file
-ln -s speeddial.sav /home/kiosk/.opera/speeddial.sav
+ln -s .opera/speeddial.sav /home/kiosk/.opera/speeddial.sav
 # Link the Opera filter
-ln -s urlfilter.ini /home/kiosk/.opera/urlfilter.ini
+ln -s .opera/urlfilter.ini /home/kiosk/.opera/urlfilter.ini
 echo -e "\n${green}Done!${NC}\n"
 
 echo -e "${red}Creating Sanickiosk Scripts...${NC}\n"
