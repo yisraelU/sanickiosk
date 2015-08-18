@@ -73,7 +73,7 @@ echo -e "${green}Done!${NC}\n"
 echo -e "${red}Installing and configuring the screensaver...${NC}\n"
 apt-get -q=2 install --no-install-recommends xscreensaver xscreensaver-data-extra xscreensaver-gl-extra libwww-perl > /dev/null
 # Link .xscreensaver
-ln -s .xscreensaver /home/kiosk/.xscreensaver
+ln -s /home/administrator/sanickiosk/.xscreensaver /home/kiosk/.xscreensaver
 # Create the screensaver directory
 mkdir /home/kiosk/screensavers
 # Add a sample image
@@ -103,54 +103,54 @@ find /usr/share/opera -name "bookmarks.adr" -print0 | xargs -0 rm -rf
 # Delete default Opera Speed Dial
 find /usr/share/opera -name "standard_speeddial.ini" -print0 | xargs -0 rm -rf
 # Link Opera Speed Dial save file
-ln -s .opera/speeddial.sav /home/kiosk/.opera/speeddial.sav
+ln -s /home/administrator/sanickiosk/.opera/speeddial.sav /home/kiosk/.opera/speeddial.sav
 # Link the Opera filter
-ln -s .opera/urlfilter.ini /home/kiosk/.opera/urlfilter.ini
+ln -s /home/administrator/sanickiosk/.opera/urlfilter.ini /home/kiosk/.opera/urlfilter.ini
 echo -e "\n${green}Done!${NC}\n"
 
 echo -e "${red}Creating Sanickiosk Scripts...${NC}\n"
 mkdir .sanickiosk
 mkdir /home/kiosk/.sanickiosk
 # Link .xsession
-ln -s .xsession /home/kiosk/.xsession
+ln -s /home/administrator/sanickiosk/.xsession /home/kiosk/.xsession
 # Create file to hold all screensaver variables
 touch .sanickiosk/screensaver.cfg
-ln -s .sanickiosk/screensaver.cfg /home/kiosk/.sanickiosk/screensaver.cfg
+ln -s /home/administrator/sanickiosk/.sanickiosk/screensaver.cfg /home/kiosk/.sanickiosk/screensaver.cfg
 # Create file to hold all GLSlideshow launch switches
 touch .sanickiosk/glslideshow_switches.cfg
-ln -s .sanickiosk/glslideshow_switches.cfg /home/kiosk/.sanickiosk/glslideshow_switches.cfg
+ln -s /home/administrator/sanickiosk/.sanickiosk/glslideshow_switches.cfg /home/kiosk/.sanickiosk/glslideshow_switches.cfg
 # Create file to hold all browser variables
 touch .sanickiosk/browser.cfg
-ln -s .sanickiosk/browser.cfg /home/kiosk/.sanickiosk/browser.cfg
+ln -s /home/administrator/sanickiosk/.sanickiosk/browser.cfg /home/kiosk/.sanickiosk/browser.cfg
 # Create file to hold Opera launch switches
 touch .sanickiosk/opera_switches.cfg
-ln -s .sanickiosk/opera_switches.cfg /home/kiosk/.sanickiosk/opera_switches.cfg
+ln -s /home/administrator/sanickiosk/.sanickiosk/opera_switches.cfg /home/kiosk/.sanickiosk/opera_switches.cfg
 # Link GLSlideshow switches script
-ln -s .sanickiosk/set_glslideshow_switches.sh /home/kiosk/.sanickiosk/set_glslideshow_switches.sh
+ln -s /home/administrator/sanickiosk/.sanickiosk/set_glslideshow_switches.sh /home/kiosk/.sanickiosk/set_glslideshow_switches.sh
 chmod +x .sanickiosk/set_glslideshow_switches.sh
 # Link operaprefs.ini
-ln -s .sanickiosk/operaprefs.sh /home/kiosk/.sanickiosk/operaprefs.sh
+ln -s /home/administrator/sanickiosk/.sanickiosk/operaprefs.sh /home/kiosk/.sanickiosk/operaprefs.sh
 chmod +x .sanickiosk/operaprefs.sh
 # Create toolbar configuration script
 mkdir /home/kiosk/.sanickiosk/toolbar
 # Toolbar Part 1 of 4
-ln -s .sanickiosk/toolbar/sanickiosk_toolbar-1.cfg /home/kiosk/.sanickiosk/toolbar/sanickiosk_toolbar-1.cfg
+ln -s /home/administrator/sanickiosk/.sanickiosk/toolbar/sanickiosk_toolbar-1.cfg /home/kiosk/.sanickiosk/toolbar/sanickiosk_toolbar-1.cfg
 # Toolbar Part 2 of 4
-ln -s .sanickiosk/toolbar/sanickiosk_toolbar-2.cfg /home/kiosk/.sanickiosk/toolbar/sanickiosk_toolbar-2.cfg
+ln -s /home/administrator/sanickiosk/.sanickiosk/toolbar/sanickiosk_toolbar-2.cfg /home/kiosk/.sanickiosk/toolbar/sanickiosk_toolbar-2.cfg
 # Toolbar Part 3 of 4
-ln -s .sanickiosk/toolbar/sanickiosk_toolbar-3.sh /home/kiosk/.sanickiosk/toolbar/sanickiosk_toolbar-3.sh
+ln -s /home/administrator/sanickiosk/.sanickiosk/toolbar/sanickiosk_toolbar-3.sh /home/kiosk/.sanickiosk/toolbar/sanickiosk_toolbar-3.sh
 # Toolbar Part 4 of 4
-ln -s .sanickiosk/toolbar/sanickiosk_toolbar-4.cfg /home/kiosk/.sanickiosk/toolbar/sanickiosk_toolbar-4.cfg
+ln -s /home/administrator/sanickiosk/.sanickiosk/toolbar/sanickiosk_toolbar-4.cfg /home/kiosk/.sanickiosk/toolbar/sanickiosk_toolbar-4.cfg
 # Link toolbar builder script
-ln -s .sanickiosk/toolbar/sanickiosk_toolbar_builder.sh /home/kiosk/.sanickiosk/toolbar/sanickiosk_toolbar_builder.sh
+ln -s /home/administrator/sanickiosk/.sanickiosk/toolbar/sanickiosk_toolbar_builder.sh /home/kiosk/.sanickiosk/toolbar/sanickiosk_toolbar_builder.sh
 # Link keyboard shortcuts
-ln -s .sanickiosk/sanickiosk_keyboard.ini /home/kiosk/.sanickiosk/sanickiosk_keyboard.ini
+ln -s /home/administrator/sanickiosk/.sanickiosk/sanickiosk_keyboard.ini /home/kiosk/.sanickiosk/sanickiosk_keyboard.ini
 # Create Opera switches script
-ln -s .sanickiosk/set_opera_switches.sh /home/kiosk/.sanickiosk/set_opera_switches.sh
+ln -s /home/administrator/sanickiosk/.sanickiosk/set_opera_switches.sh /home/kiosk/.sanickiosk/set_opera_switches.sh
 chmod +x .sanickiosk/set_opera_switches.sh
 # Create browser killer
 apt-get -q=2 install --no-install-recommends xprintidle > /dev/null
-ln -s .sanickiosk/browser_killer.sh /home/kiosk/.sanickiosk/browser_killer.sh
+ln -s /home/administrator/sanickiosk/.sanickiosk/browser_killer.sh /home/kiosk/.sanickiosk/browser_killer.sh
 chmod +x .sanickiosk/browser_killer.sh
 # Set correct user and group permissions for /home/kiosk
 chown -R kiosk:kiosk /home/kiosk/
