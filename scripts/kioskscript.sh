@@ -25,7 +25,7 @@ clear
 . `dirname $PWD`/config/system.cfg
 
 # Set Log
-log_it="> /dev/null 2>$install_dir/logs/kioskscript.log"
+log_it="> /dev/null 2> $install_dir/logs/kioskscript.log"
 
 # Make required empty directories
 mkdir $install_dir/logs && touch $install_dir/logs/kioskscript.log # Create log file
