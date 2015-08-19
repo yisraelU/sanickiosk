@@ -37,6 +37,11 @@ green='\e[1;32m'
 blue='\e[1;36m'
 NC='\e[0m' # No color
 
+# Make required empty directories
+mkdir $INSTALL_DIR/logs
+mkdir $INSTALL_DIR/config > /dev/null 2>$INSTALL_DIR/logs/kioskscript.log
+mkdir $INSTALL_DIR/screensavers > /dev/null 2>$INSTALL_DIR/logs/kioskscript.log
+
 # Prevent terminal blanking
 setterm -powersave off -blank 0 > /dev/null 2>$INSTALL_DIR/logs/kioskscript.log
 
