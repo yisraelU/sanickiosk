@@ -1,7 +1,7 @@
 #!/bin/bash
 
 # Import variables
-. /home/sanickiosk/sanickiosk/config/browser.cfg
+. /home/sanickiosk/config/browser.cfg
 
 switches=""
 for option in kioskmode fullscreen nokeys nomenu nodownload noprint nomaillinks ; do
@@ -12,4 +12,4 @@ for option in kioskmode fullscreen nokeys nomenu nodownload noprint nomaillinks 
 	fi
 done
 
-echo $switches > /home/sanickiosk/sanickiosk/config/opera_switches.cfg
+echo $switches > /home/sanickiosk/config/opera_switches.cfg

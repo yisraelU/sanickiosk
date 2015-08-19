@@ -1,7 +1,7 @@
 #!/bin/bash
 
 # Import variables
-. /home/sanickiosk/sanickiosk/config/screensaver.cfg
+. /home/sanickiosk/config/screensaver.cfg
 
 switches=""
 for option in glslideshow_duration glslideshow_pan glslideshow_fade glslideshow_zoom glslideshow_clip ; do
@@ -24,4 +24,4 @@ for option in glslideshow_duration glslideshow_pan glslideshow_fade glslideshow_
 	fi
 done
 
-echo $switches > /home/sanickiosk/sanickiosk/config/glslideshow_switches.cfg
+echo $switches > /home/sanickiosk/config/glslideshow_switches.cfg

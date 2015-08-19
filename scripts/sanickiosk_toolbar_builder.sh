@@ -1,6 +1,6 @@
 #!/bin/bash
 # Import variables
-. /home/sanickiosk/sanickiosk/config/browser.cfg
+. /home/sanickiosk/config/browser.cfg
 
 if [ $hide_toolbar = "False" ]
 then
