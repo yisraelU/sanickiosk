@@ -25,19 +25,19 @@ clear
 . `dirname $PWD`/config/system.cfg
 
 # Make required empty directories
-mkdir $INSTALL_DIR/logs
+mkdir $INSTALL_DIR/logs && touch $INSTALL_DIR/logs/kioskscript.log # Create log file
 mkdir $INSTALL_DIR/screensavers > /dev/null 2>$INSTALL_DIR/logs/kioskscript.log
 
 # Pretty colors
 red='\e[1;31m'
 green='\e[1;32m'
-yellow='\e[1;33m'
+yellow='\e[0;33m'
 NC='\e[0m' # No color
 
 # Prevent terminal blanking
 setterm -powersave off -blank 0 > /dev/null 2>$INSTALL_DIR/logs/kioskscript.log
 
-echo -e "${red}Installing operating system updates ${yellow}(this *may* take a while)${red}...${NC}"
+echo -e "${red}Installing operating system updates ${yellow}(this may take a while)${red}...${NC}"
 # Use mirror method
 sed -i "1i \
 deb mirror://mirrors.ubuntu.com/mirrors.txt $VERSION main restricted universe multiverse\n\
@@ -54,7 +54,7 @@ apt-get -q autoremove > /dev/null 2>$INSTALL_DIR/logs/kioskscript.log
 apt-get -q clean > /dev/null 2>$INSTALL_DIR/logs/kioskscript.log
 echo -e "${green}Done!${NC}"
 
-echo -e "${red}Installing software ${yellow}(this **will** take a while)${red}...${NC}"
+echo -e "${red}Installing software ${yellow}(this will take a while)${red}...${NC}"
 # Ajenti
 wget -q http://repo.ajenti.org/debian/key -O- | apt-key add - > /dev/null 2>$INSTALL_DIR/logs/kioskscript.log
 echo '
@@ -150,12 +150,16 @@ echo -e "${red}Locking down the SanicKiosk user...${NC}"
 #deluser $USER sudo
 echo -e "${green}Done!${NC}\n"
 
-echo -e "${green}Reboot?${NC}"
-select yn in "Yes" "No"; do
-        case $yn in
-                Yes )
-                        reboot ;;
-                No )
-                        break ;;
-        esac
-done
+if [[ -s $INSTALL_DIR/logs/kioskscript.log ]] ; then
+  echo -e "${green}No errors reported. Reboot?${NC}"
+  select yn in "Yes" "No"; do
+          case $yn in
+                  Yes )
+                          reboot ;;
+                  No )
+                          break ;;
+          esac
+  done
+else
+  echo -e "${red}Errors recorded. Please see $INSTALL_DIR/logs/kioskscript.log${NC}"
+fi ;
