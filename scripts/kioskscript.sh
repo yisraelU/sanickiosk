@@ -43,9 +43,9 @@ nc='\e[0m' # No color
 # Prevent terminal blanking
 setterm -powersave off -blank 0 >> $shh 2>> $log_it
 
-echo -e "${red}Installing Sanickiosk on $os $ver_num x$arch...${nc}\n"
+echo -e "${red}Installing Sanickiosk on $NAME $VERSION...${nc}\n"
 
-echo -e "${red}Installing operating system updates ${orange}(this may take a while)${red}...${nc}"
+echo -e "${red}Performing operating system updates ${orange}(this may take a while)${red}...${nc}"
 # Use mirror method
 sed -i "1i \
 deb mirror://mirrors.ubuntu.com/mirrors.txt $ver_code main restricted universe multiverse\n\
@@ -166,7 +166,6 @@ select yn in "Yes" "No"; do
                 Yes )
                         reboot ;;
                 No )
-                        cd $install_dir/logs
-                        break ;;
+                        exit 1 ;;
         esac
 done
