@@ -84,8 +84,8 @@ packagelist=(
   software-properties-common python-software-properties # Enable PPA installs
   systemback-cli # Systemback custom image maker
 )
-apt-get -q install --no-install-recommends ${packagelist[@]} #>> $shh 2>> $log_it
-tasksel install print-server >> $shh 2>> $log_it
+apt-get -qy install --no-install-recommends ${packagelist[@]} #>> $shh 2>> $log_it
+tasksel install print-server #>> $shh 2>> $log
 echo -e "${green}Done!${nc}"
 
 echo -e "${red}Disabling root recovery mode...${nc}"
