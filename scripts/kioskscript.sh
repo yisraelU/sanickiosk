@@ -84,7 +84,7 @@ packagelist=(
   software-properties-common python-software-properties # Enable PPA installs
   systemback-cli # Systemback custom image maker
 )
-apt-get -q install --no-install-recommends #${packagelist[@]} >> $shh 2>> $log_it
+apt-get -q install --no-install-recommends ${packagelist[@]} #>> $shh 2>> $log_it
 tasksel install print-server >> $shh 2>> $log_it
 echo -e "${green}Done!${nc}"
 
