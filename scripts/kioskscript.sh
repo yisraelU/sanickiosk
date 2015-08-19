@@ -17,7 +17,7 @@
 ## git clone https://github.com/sanicki/sanickiosk.git
 ## cd sanickiosk/scripts
 ## chmod +x kioskscript.sh
-## .kioskscript.sh
+## .kioskscript.sh > kioskscript.log 2>&1
 
 # Pretty colors
 red='\e[0;31m'
@@ -26,6 +26,7 @@ blue='\e[1;36m'
 NC='\e[0m' # No color
 
 clear
+
 # Determine Ubuntu Version Codename
 VERSION=$(lsb_release -cs)
 
@@ -38,12 +39,12 @@ deb mirror://mirrors.ubuntu.com/mirrors.txt $VERSION-backports main restricted u
 deb mirror://mirrors.ubuntu.com/mirrors.txt $VERSION-security main restricted universe multiverse\n\
 " /etc/apt/sources.list
 # Refresh
-apt-get -q=2 update
+apt-get -q update
 # Download & Install
-apt-get -q=2 upgrade > /dev/null
+apt-get -q upgrade
 # Clean
-apt-get -q=2 autoremove
-apt-get -q=2 clean
+apt-get -q autoremove
+apt-get -q clean
 echo -e "${green}Done!${NC}\n"
 
 echo -e "${red}Installing software ${blue}(this may take a while too)${red}...${NC}\n"
@@ -61,7 +62,7 @@ deb http://ppa.launchpad.net/nemh/systemback/ubuntu $VERSION main
 echo -e "
 deb http://archive.canonical.com/ubuntu/ $VERSION partner
 "  >> /etc/apt/sources.list.d/canonical_partner.list
-apt-get -q=2 update
+apt-get -q update
 packagelist=(
   alsa # Audio
   ajenti # Browser-based system administration tool
@@ -77,8 +78,8 @@ packagelist=(
   software-properties-common python-software-properties # Enable PPA installs
   systemback-cli # Systemback custom image maker
 )
-apt-get -q=2 install --no-install-recommends ${packagelist[@]} > /dev/null
-tasksel install print-server > /dev/null
+apt-get -q install --no-install-recommends ${packagelist[@]}
+tasksel install print-server
 
 echo -e "${red}Disabling root recovery mode...${NC}\n"
 sed -i -e 's/#GRUB_DISABLE_RECOVERY/GRUB_DISABLE_RECOVERY/g' /etc/default/grub

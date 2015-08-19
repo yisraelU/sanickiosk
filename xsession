@@ -36,7 +36,7 @@ else
 fi
 
 # Get screen resolution
-res=$(xrandr -q | awk -F'"'"'current'"'"' -F'"'"','"'"' '"'"'NR==1 {gsub("( |current)","");print $2}'"'"')
+#res=$(xrandr -q | awk -F'"'"'current'"'"' -F'"'"','"'"' '"'"'NR==1 {gsub("( |current)","");print $2}'"'"')
 
 # Nuke it from orbit
 #rm -rf /home/sanickiosk/sanickiosk/.opera/cache
@@ -60,17 +60,18 @@ res=$(xrandr -q | awk -F'"'"'current'"'"' -F'"'"','"'"' '"'"'NR==1 {gsub("( |cur
 #cp /home/sanickiosk/sanickiosk/.sanickiosk_keyboard.ini /home/sanickiosk/sanickiosk/.opera/keyboard/
 
 # Write latest browser switches
-bash /home/sanickiosk/sanickiosk/scripts/set_opera_switches.sh
+#bash /home/sanickiosk/sanickiosk/scripts/set_opera_switches.sh
 
 # Read latest browser switches
-browser_switches=`cat /home/sanickiosk/sanickiosk/config/opera_switches.cfg`
+#browser_switches=`cat /home/sanickiosk/sanickiosk/config/opera_switches.cfg`
 
 # Start browser killer
 sh /home/sanickiosk/sanickiosk/scripts/browser_killer.sh &
 
 # Start window manager
-exec matchbox-window-manager  -use_titlebar no
+#exec matchbox-window-manager  -use_titlebar no
 
+: <<'END'
 # Relaunch browser if closed
 while true; do
 	# Restore Opera Speed Dial
@@ -90,3 +91,4 @@ while true; do
 	fi
 	sleep 5s
 done
+END
