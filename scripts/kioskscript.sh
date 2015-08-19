@@ -32,9 +32,9 @@ USER=$(stat -c '%U' $HOME_DIR)
 VERSION=$(lsb_release -cs)
 
 # Pretty colors
-red='\e[0;31m'
+red='\e[1;31m'
 green='\e[1;32m'
-blue='\e[1;36m'
+yellow='\e[1;33m'
 NC='\e[0m' # No color
 
 # Make required empty directories
@@ -45,7 +45,7 @@ mkdir $INSTALL_DIR/screensavers > /dev/null 2>$INSTALL_DIR/logs/kioskscript.log
 # Prevent terminal blanking
 setterm -powersave off -blank 0 > /dev/null 2>$INSTALL_DIR/logs/kioskscript.log
 
-echo -e "${red}Installing operating system updates ${blue}(this *may* take a while)${red}...${NC}"
+echo -e "${red}Installing operating system updates ${yellow}(this *may* take a while)${red}...${NC}"
 # Use mirror method
 sed -i "1i \
 deb mirror://mirrors.ubuntu.com/mirrors.txt $VERSION main restricted universe multiverse\n\
@@ -62,7 +62,7 @@ apt-get -q autoremove > /dev/null 2>$INSTALL_DIR/logs/kioskscript.log
 apt-get -q clean > /dev/null 2>$INSTALL_DIR/logs/kioskscript.log
 echo -e "${green}Done!${NC}"
 
-echo -e "${red}Installing software ${blue}(this **will** take a while)${red}...${NC}"
+echo -e "${red}Installing software ${yellow}(this **will** take a while)${red}...${NC}"
 # Ajenti
 wget -q http://repo.ajenti.org/debian/key -O- | apt-key add - > /dev/null 2>$INSTALL_DIR/logs/kioskscript.log
 echo '
@@ -116,7 +116,7 @@ ln -s $INSTALL_DIR/screensavers $HOME_DIR/screensavers > /dev/null 2>$INSTALL_DI
 wget -q http://beginwithsoftware.com/wallpapers/archive/Various/images/free_desktop_wallpaper_logo_space_for_rent_1024x768.gif -O /home/sanickiosk/screensavers/deleteme.gif > /dev/null 2>$INSTALL_DIR/logs/kioskscript.log
 echo -e "${green}Done!${NC}"
 
-echo -e "${red}Configuring the browser ${blue}(Firefox)${red}...${NC}"
+echo -e "${red}Configuring the browser ${yellow}(Firefox)${red}...${NC}"
 # Overwrite default Opera Bookmarks
 #find /usr/share/opera -name "bookmarks.adr" -print0 | xargs -0 rm -rf
 # Delete default Opera Speed Dial
@@ -136,7 +136,7 @@ chown -R $USER:$USER $HOME_DIR > /dev/null 2>$INSTALL_DIR/logs/kioskscript.log
 find $INSTALL_DIR/scripts -type f -exec chmod +x {} \; > /dev/null 2>$INSTALL_DIR/logs/kioskscript.log
 echo -e "${green}Done!${NC}"
 
-echo -e "${red}Configuring the browser-based system administration tool ${blue}(Ajenti)${red}...${NC}"
+echo -e "${red}Configuring the browser-based system administration tool ${yellow}(Ajenti)${red}...${NC}"
 service ajenti stop > /dev/null 2>$INSTALL_DIR/logs/kioskscript.log
 # Changing to default https port
 sed -i 's/"port": 8000/"port": 443/' /etc/ajenti/config.json > /dev/null 2>$INSTALL_DIR/logs/kioskscript.log
