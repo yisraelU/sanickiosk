@@ -21,26 +21,18 @@
 
 clear
 
-# Paths
-INSTALL_DIR=`dirname $PWD`
-HOME_DIR=`dirname $INSTALL_DIR`
+# Import system info
+. `dirname $PWD`/config/system.cfg
 
-# User
-USER=$(stat -c '%U' $HOME_DIR)
-
-# Ubuntu Version Codename
-VERSION=$(lsb_release -cs)
+# Make required empty directories
+mkdir $INSTALL_DIR/logs
+mkdir $INSTALL_DIR/screensavers > /dev/null 2>$INSTALL_DIR/logs/kioskscript.log
 
 # Pretty colors
 red='\e[1;31m'
 green='\e[1;32m'
 yellow='\e[1;33m'
 NC='\e[0m' # No color
-
-# Make required empty directories
-mkdir $INSTALL_DIR/logs
-mkdir $INSTALL_DIR/config > /dev/null 2>$INSTALL_DIR/logs/kioskscript.log
-mkdir $INSTALL_DIR/screensavers > /dev/null 2>$INSTALL_DIR/logs/kioskscript.log
 
 # Prevent terminal blanking
 setterm -powersave off -blank 0 > /dev/null 2>$INSTALL_DIR/logs/kioskscript.log
@@ -110,10 +102,8 @@ echo -e "${green}Done!${NC}"
 echo -e "${red}Configuring the screensaver...${NC}"
 # Link .xscreensaver
 ln -s $INSTALL_DIR/xscreensaver $HOME_DIR/.xscreensaver > /dev/null 2>$INSTALL_DIR/logs/kioskscript.log
-# Link screensaver directory
-ln -s $INSTALL_DIR/screensavers $HOME_DIR/screensavers > /dev/null 2>$INSTALL_DIR/logs/kioskscript.log
 # Add a sample image
-wget -q http://beginwithsoftware.com/wallpapers/archive/Various/images/free_desktop_wallpaper_logo_space_for_rent_1024x768.gif -O /home/sanickiosk/screensavers/deleteme.gif > /dev/null 2>$INSTALL_DIR/logs/kioskscript.log
+wget -q http://beginwithsoftware.com/wallpapers/archive/Various/images/free_desktop_wallpaper_logo_space_for_rent_1024x768.gif -O $INSTALL_DIR/screensavers/deleteme.gif > /dev/null 2>$INSTALL_DIR/logs/kioskscript.log
 echo -e "${green}Done!${NC}"
 
 echo -e "${red}Configuring the browser ${yellow}(Firefox)${red}...${NC}"
