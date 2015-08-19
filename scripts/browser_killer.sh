@@ -1,6 +1,6 @@
 #!/bin/bash
 # Import variables
-. /home/sanickiosk/config/browser.cfg
+. /home/sanickiosk/sanickiosk/config/browser.cfg
 
 # Wanted trigger timeout in milliseconds.
 IDLE_TIME=$(($browser_idle*60*1000))

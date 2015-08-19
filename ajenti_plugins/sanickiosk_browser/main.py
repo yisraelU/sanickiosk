@@ -53,12 +53,12 @@ class SanicKioskScreensaverPrefs (SectionPlugin):
 		self.binder.populate()
 
 		all_vars = '\n'.join([k + '="' + str(v) + '"' for k,v in self.classconfig.iteritems()])
-		open('/home/sanickiosk/config/browser.cfg', 'w').write(all_vars) #save
+		open('/home/sanickiosk/sanickiosk/config/browser.cfg', 'w').write(all_vars) #save
 
 #	@on('speeddial_edit', 'click')
 #	def speeddial_edit(self):
-#		self.context.launch('notepad', path='/home/sanickiosk/.firefox/speeddial.sav')
+#		self.context.launch('notepad', path='/home/sanickiosk/sanickiosk/.firefox/speeddial.sav')
 
 #	@on('filters_edit', 'click')
 #	def filters_edit(self):
-#		self.context.launch('notepad', path='/home/sanickiosk/.firefox/urlfilter.ini')
+#		self.context.launch('notepad', path='/home/sanickiosk/sanickiosk/.firefox/urlfilter.ini')

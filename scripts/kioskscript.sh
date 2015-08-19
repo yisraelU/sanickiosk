@@ -14,8 +14,8 @@
 ## To use this script:
 ## sudo su
 ## apt-get install -y git
-## git clone https://github.com/sanicki/sanickiosk.git .
-## cd scripts
+## git clone https://github.com/sanicki/sanickiosk.git
+## cd sanickiosk/scripts
 ## chmod +x kioskscript.sh
 ## .kioskscript.sh
 
@@ -48,12 +48,12 @@ echo -e "${green}Done!${NC}\n"
 
 echo -e "${red}Installing software ${blue}(this may take a while too)${red}...${NC}\n"
 # Ajenti
-wget -q http://repo.ajenti.org/debian/key -O- | apt-key add - > /dev/null
+wget -q http://repo.ajenti.org/debian/key -O- | apt-key add -
 echo '
 deb http://repo.ajenti.org/ng/debian main main ubuntu
 '  >> /etc/apt/sources.list.d/ajenti.list
 # Systemback
-apt-key adv --keyserver keyserver.ubuntu.com --recv-keys 73C62A1B > /dev/null
+apt-key adv --keyserver keyserver.ubuntu.com --recv-keys 73C62A1B
 echo -e "
 deb http://ppa.launchpad.net/nemh/systemback/ubuntu $VERSION main
 "  >> /etc/apt/sources.list.d/systemback.list
@@ -92,7 +92,7 @@ echo -e "${green}Done!${NC}\n"
 
 echo -e "${red}Configuring the screensaver...${NC}\n"
 # Link .xscreensaver
-ln -s /home/sanickiosk/xscreensaver /home/sanickiosk/.xscreensaver
+ln -s /home/sanickiosk/sanickiosk/xscreensaver /home/sanickiosk/.xscreensaver
 # Create the screensaver directory
 mkdir /home/sanickiosk/screensavers
 # Add a sample image
@@ -105,18 +105,18 @@ echo -e "${red}Configuring the browser ${blue}(Firefox)${red}...${NC}\n"
 # Delete default Opera Speed Dial
 #find /usr/share/opera -name "standard_speeddial.ini" -print0 | xargs -0 rm -rf
 # Link Opera Speed Dial save file
-#ln -s /home/sanickiosk/.opera/speeddial.sav /home/sanickiosk/.opera/speeddial.sav
+#ln -s /home/sanickiosk/sanickiosk/.opera/speeddial.sav /home/sanickiosk/.opera/speeddial.sav
 # Link the Opera filter
-#ln -s /home/sanickiosk/.opera/urlfilter.ini /home/sanickiosk/.opera/urlfilter.ini
+#ln -s /home/sanickiosk/sanickiosk/.opera/urlfilter.ini /home/sanickiosk/.opera/urlfilter.ini
 echo -e "\n${green}Done!${NC}\n"
 
 echo -e "${red}Setting up the SanicKiosk scripts...${NC}\n"
 # Link .xsession
-ln -s /home/sanickiosk/xsession /home/sanickiosk/.xsession
+ln -s /home/sanickiosk/sanickiosk/xsession /home/sanickiosk/.xsession
 # Set correct user and group permissions for /home/kiosk
 chown -R sanickiosk:sanickiosk /home/sanickiosk/
 # Set scripts to exexutable
-find /home/sanickiosk/scripts -type f -exec chmod +x {} \;
+find /home/sanickiosk/sanickiosk/scripts -type f -exec chmod +x {} \;
 echo -e "${green}Done!${NC}\n"
 
 echo -e "${red}Configuring the browser-based system administration tool ${blue}(Ajenti)${red}...${NC}\n"
@@ -125,8 +125,8 @@ service ajenti stop
 sed -i 's/"port": 8000/"port": 443/' /etc/ajenti/config.json
 echo -e "\n${green}Done!${NC}\n"
 # Linking SanicKiosk plugins to Ajenti
-ln -s /home/sanickiosk/ajenti_plugins/sanickiosk_browser /var/lib/ajenti/plugins/sanickiosk_browser
-ln -s /home/sanickiosk/ajenti_plugins/sanickiosk_screensaver /var/lib/ajenti/plugins/sanickiosk_screensaver
+ln -s /home/sanickiosk/sanickiosk/ajenti_plugins/sanickiosk_browser /var/lib/ajenti/plugins/sanickiosk_browser
+ln -s /home/sanickiosk/sanickiosk/ajenti_plugins/sanickiosk_screensaver /var/lib/ajenti/plugins/sanickiosk_screensaver
 echo -e "${green}Done!${NC}\n"
 
 echo -e "${red}Enabling audio...${NC}\n"
@@ -137,7 +137,7 @@ echo -e "${red}Setting up print server...${NC}\n"
 usermod -aG lpadmin sanickiosk
 usermod -aG lp,sys sanickiosk
 rm -f /etc/cups/cupsd.conf
-ln -s /home/sanickiosk/etc/cups/cupsd.conf /etc/cups/cupsd.conf
+ln -s /home/sanickiosk/sanickiosk/etc/cups/cupsd.conf /etc/cups/cupsd.conf
 echo -e "${green}Done!${NC}\n"
 
 echo -e "${red}Locking down the SanicKiosk user...${NC}\n"

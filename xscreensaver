@@ -9,7 +9,7 @@ fadeSeconds:	0:00:03
 fadeTicks:	20
 dpmsEnabled:	False
 chooseRandomImages: True
-imageDirectory:	/home/sanickiosk/screensavers
+imageDirectory:	/home/sanickiosk/sanickiosk/screensavers
 mode:		one
 selected:	0
 programs:	glslideshow -root

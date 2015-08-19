@@ -1,7 +1,7 @@
 #!/bin/bash
 
 # Import variables
-. /home/sanickiosk/config/browser.cfg
+. /home/sanickiosk/sanickiosk/config/browser.cfg
 
 echo "
 Opera Preferences version 2.1
