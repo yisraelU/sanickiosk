@@ -2,7 +2,7 @@
 
 ## Kioskscript, a script for building the Sanickiosk web kiosk
 ## August 2015
-## Tested on Ubuntu Minimal x64 15.04 fresh install
+## Tested on Ubuntu Server x86 14.04.3 fresh install
 ##
 ## Documentation: http://sanickiosk.org
 ## Download a ready-to-install ISO of Sanickiosk at: http://links.sanicki.com/sanickiosk-dl
@@ -16,8 +16,6 @@
 ## apt-get install -y git
 ## git clone https://github.com/sanicki/sanickiosk.git
 ## cd sanickiosk
-## apt-get install dos2unix # Because of \r woes
-## find . -type f -exec dos2unix {} \;
 ## chmod +x kioskscript.sh
 ## .kioskscript.sh
 
@@ -109,10 +107,9 @@ ln -s /home/administrator/sanickiosk/.opera/urlfilter.ini /home/kiosk/.opera/url
 echo -e "\n${green}Done!${NC}\n"
 
 echo -e "${red}Creating Sanickiosk Scripts...${NC}\n"
-mkdir .sanickiosk
 mkdir /home/kiosk/.sanickiosk
-# Link .xsession
-ln -s /home/administrator/sanickiosk/.xsession /home/kiosk/.xsession
+# Move .xsession
+mv /home/administrator/sanickiosk/.xsession /home/kiosk/.xsession
 # Create file to hold all screensaver variables
 touch .sanickiosk/screensaver.cfg
 ln -s /home/administrator/sanickiosk/.sanickiosk/screensaver.cfg /home/kiosk/.sanickiosk/screensaver.cfg
@@ -169,11 +166,8 @@ sed -i 's/"port": 8000/"port": 443/' /etc/ajenti/config.json
 echo -e "\n${green}Done!${NC}\n"
 
 echo -e "${red}Adding Sanickiosk plugins to Ajenti...${NC}\n"
-apt-get -q=2 install --no-install-recommends unzip > /dev/null
-wget -q https://github.com/sanicki/sanickiosk_plugins/archive/master.zip -O sanickiosk_plugins-master.zip
-unzip -qq sanickiosk_plugins-master.zip
-mv sanickiosk_plugins-master/* /var/lib/ajenti/plugins/
-rm -r sanickiosk_plugins-master*
+ln -s /home/administrator/sanickiosk/sanickiosk_plugins/sanickiosk_browser /var/lib/ajenti/plugins/sanickiosk_browser
+ln -s /home/administrator/sanickiosk/sanickiosk_plugins/sanickiosk_screensaver /var/lib/ajenti/plugins/sanickiosk_screensaver
 echo -e "${green}Done!${NC}\n"
 
 echo -e "${red}Installing audio...${NC}\n"

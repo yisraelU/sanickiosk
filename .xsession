@@ -39,8 +39,12 @@ fi
 res=$(xrandr -q | awk -F'"'"'current'"'"' -F'"'"','"'"' '"'"'NR==1 {gsub("( |current)","");print $2}'"'"')
 
 # Nuke it from orbit
-rm -r /home/kiosk/.opera
-mkdir /home/kiosk/.opera
+rm -rf /home/kiosk/.opera/cache
+mkdir /home/kiosk/.opera/cache
+
+rm /home/kiosk/.opera/global_history.dat
+rm /home/kiosk/.opera/bookmarks.adr
+rm /home/kiosk/.opera/download.dat
 
 # Write latest operaprefs.ini
 sh /home/kiosk/.sanickiosk/operaprefs.sh
