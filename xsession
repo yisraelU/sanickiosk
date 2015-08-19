@@ -69,26 +69,17 @@ fi
 sh /home/sanickiosk/sanickiosk/scripts/browser_killer.sh &
 
 # Start window manager
-#exec matchbox-window-manager  -use_titlebar no
+matchbox-window-manager -use_titlebar no &
 
-: <<'END'
+# Restore Opera Speed Dial
+#cp /home/sanickiosk/sanickiosk/.opera/speeddial.sav /home/sanickiosk/sanickiosk/.opera/speeddial.ini
+
+# Delete Opera Bookmarks
+#rm /home/sanickiosk/sanickiosk/.opera/bookmarks.adr
+
 # Relaunch browser if closed
 while true; do
-	# Restore Opera Speed Dial
-	#cp /home/sanickiosk/sanickiosk/.opera/speeddial.sav /home/sanickiosk/sanickiosk/.opera/speeddial.ini
-
-	# Delete Opera Bookmarks
-	#rm /home/sanickiosk/sanickiosk/.opera/bookmarks.adr
-
-	# Relaunch Browser
-	if [ $kioskspeeddial = "True" ]
-	then
-		firefox $browser_switches
-		#firefox -geometry $res+0+0 $browser_switches
-	else
-		firefox $browser_switches $home_url
-		#firefox -geometry $res+0+0 $browser_switches $home_url
-	fi
+	chromium-browser $browser_switches $home_url
+	#firefox $browser_switches $home_url
 	sleep 5s
 done
-END

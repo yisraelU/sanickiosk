@@ -15,9 +15,8 @@
 ## sudo apt-get install -y git
 ## git clone https://github.com/sanicki/sanickiosk
 ## cd sanickiosk/scripts
-## sudo su
 ## chmod +x kioskscript.sh
-## .kioskscript.sh
+## sudo .kioskscript.sh
 
 clear
 
@@ -40,7 +39,7 @@ green='\e[1;32m'
 orange='\e[0;33m'
 nc='\e[0m' # No color
 
-echo -e "${red}Installing Sanickiosk on $NAME $VERSION...${nc}\n"
+echo -e "${red}Installing Sanickiosk on $NAME $VERSION.${nc}\n"
 
 echo -e "${red}Performing operating system updates ${orange}(this may take a while)${red}...${nc}"
 # Use mirror method
@@ -70,22 +69,23 @@ echo -e "deb http://ppa.launchpad.net/nemh/systemback/ubuntu $ver_code main" > /
 echo -e "deb http://archive.canonical.com/ubuntu/ $ver_code partner" > /etc/apt/sources.list.d/canonical_partner.list
 apt-get -q update >> $shh 2>> $log_it
 packagelist=(
-  alsa # Audio
-  ajenti # Browser-based system administration tool
-  wpasupplicant # Secure wireless support
-  xorg nodm matchbox-window-manager # GUI
-  unclutter # Hide cursor
-  xscreensaver xscreensaver-data-extra xscreensaver-gl-extra libwww-perl # Screensaver
-  firefox # Browser
+xorg nodm matchbox-window-manager # GUI
+  chromium-browser # Browser
+  #firefox # Browser
   adobe-flashplugin icedtea-7-plugin ttf-liberation # Flash, Java, and fonts
   xprintidle # Browser killer dependency
-  tasksel # Task selection
-  xserver-xorg-input-multitouch xinput-calibrator # Touchscreen support
-  software-properties-common python-software-properties # Enable PPA installs
+  ajenti # Browser-based system administration tool
   systemback-cli # Systemback custom image maker
+  xscreensaver xscreensaver-data-extra xscreensaver-gl-extra libwww-perl # Screensaver
+  software-properties-common python-software-properties # Enable PPA installs
+  tasksel # Task selection
+  unclutter # Hide cursor
+  wpasupplicant # Secure wireless support
+  alsa # Audio
+  xserver-xorg-input-multitouch xinput-calibrator # Touchscreen support
 )
 apt-get -qy install --no-install-recommends ${packagelist[@]} >> $shh 2>> $log_it
-tasksel install print-server >> $shh 2>> $log
+tasksel install print-server >> $shh 2>> $log_it
 echo -e "${green}Done!${nc}"
 
 echo -e "${red}Disabling root recovery mode...${nc}"
