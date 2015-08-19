@@ -46,19 +46,36 @@ apt-get -q=2 autoremove
 apt-get -q=2 clean
 echo -e "${green}Done!${NC}\n"
 
+echo -e "${red}Installing software ${blue}(this may take a while too)${red}...${NC}\n"
+wget -q http://repo.ajenti.org/debian/key -O- | apt-key add -
+echo '
+## Ajenti
+deb http://repo.ajenti.org/ng/debian main main ubuntu
+'  >> /etc/apt/sources.list.d/ajenti.list
+apt-get -q=2 update
+packagelist=(
+  alsa # Audio
+  ajenti # Browser-based system administration tool
+  wpasupplicant # Secure wireless support
+  xorg nodm matchbox-window-manager # GUI
+  unclutter # Hide cursor
+  xscreensaver xscreensaver-data-extra xscreensaver-gl-extra libwww-perl # Screensaver
+  firefox # Browser
+  adobe-flashplugin icedtea-7-plugin ttf-liberation # Flash, Java, and fonts
+  xprintidle # Browser killer dependency
+  tasksel # Task selection
+  xserver-xorg-input-multitouch xinput-calibrator # Touchscreen support
+  software-properties-common python-software-properties # Enable PPA installs
+)
+apt-get -q=2 install --no-install-recommends ${packagelist[@]} > /dev/null
+tasksel install print-server > /dev/null
+# Add customized image installation maker PPA
+add-apt-repository -y ppa:nemh/systemback
+apt-get -q=2 update && apt-get -q=2 install --no-install-recommends systemback-cli
+
 echo -e "${red}Disabling root recovery mode...${NC}\n"
 sed -i -e 's/#GRUB_DISABLE_RECOVERY/GRUB_DISABLE_RECOVERY/g' /etc/default/grub
 update-grub
-echo -e "\n${green}Done!${NC}\n"
-
-echo -e "${red}Enabling secure wireless support...${NC}\n"
-apt-get -q=2 install --no-install-recommends wpasupplicant > /dev/null
-echo -e "${green}Done!${NC}\n"
-
-echo -e "${red}Installing a graphical user interface...${NC}\n"
-apt-get -q=2 install --no-install-recommends xorg nodm matchbox-window-manager > /dev/null
-# Hide Cursor
-apt-get -q=2 install --no-install-recommends unclutter > /dev/null
 echo -e "\n${green}Done!${NC}\n"
 
 echo -e "${red}Configuring autologin...${NC}\n"
@@ -66,8 +83,7 @@ sed -i -e 's/NODM_ENABLED=false/NODM_ENABLED=true/g' /etc/default/nodm
 sed -i -e 's/NODM_USER=root/NODM_USER=sanickiosk/g' /etc/default/nodm
 echo -e "${green}Done!${NC}\n"
 
-echo -e "${red}Installing and configuring the screensaver...${NC}\n"
-apt-get -q=2 install --no-install-recommends xscreensaver xscreensaver-data-extra xscreensaver-gl-extra libwww-perl > /dev/null
+echo -e "${red}Configuring the screensaver...${NC}\n"
 # Link .xscreensaver
 ln -s /home/sanickiosk/sanickiosk/xscreensaver /home/sanickiosk/.xscreensaver
 # Create the screensaver directory
@@ -76,9 +92,7 @@ mkdir /home/sanickiosk/screensavers
 wget -q http://beginwithsoftware.com/wallpapers/archive/Various/images/free_desktop_wallpaper_logo_space_for_rent_1024x768.gif -O /home/sanickiosk/screensavers/deleteme.gif
 echo -e "\n${green}Done!${NC}\n"
 
-echo -e "${red}Installing the browser ${blue}(Firefox)${red}...${NC}\n"
-apt-get -q=2 -y install --force-yes --no-install-recommends firefox > /dev/null
-apt-get -q=2 install --no-install-recommends adobe-flashplugin icedtea-7-plugin ttf-liberation > /dev/null # flash, java, and fonts
+echo -e "${red}Configuring the browser ${blue}(Firefox)${red}...${NC}\n"
 # Overwrite default Opera Bookmarks
 #find /usr/share/opera -name "bookmarks.adr" -print0 | xargs -0 rm -rf
 # Delete default Opera Speed Dial
@@ -89,54 +103,34 @@ apt-get -q=2 install --no-install-recommends adobe-flashplugin icedtea-7-plugin 
 #ln -s /home/sanickiosk/sanickiosk/.opera/urlfilter.ini /home/sanickiosk/.opera/urlfilter.ini
 echo -e "\n${green}Done!${NC}\n"
 
-echo -e "${red}Creating SanicKiosk Scripts...${NC}\n"
+echo -e "${red}Setting up the SanicKiosk scripts...${NC}\n"
 # Link .xsession
 ln -s /home/sanickiosk/sanickiosk/xsession /home/sanickiosk/.xsession
 # Set correct user and group permissions for /home/kiosk
 chown -R sanickiosk:sanickiosk /home/sanickiosk/
 # Set scripts to exexutable
-chmod +x sanickiosk/scripts/*.sh
-# Dependency for browser killer
-apt-get -q=2 install --no-install-recommends xprintidle > /dev/null
+find /home/sanickiosk/sanickiosk/scripts -type f -exec chmod +x {} \;
 echo -e "${green}Done!${NC}\n"
 
-echo -e "${red}Adding the browser-based system administration tool ${blue}(Ajenti)${red}...${NC}\n"
-wget -q http://repo.ajenti.org/debian/key -O- | apt-key add -
-echo '
-## Ajenti
-deb http://repo.ajenti.org/ng/debian main main ubuntu
-'  >> /etc/apt/sources.list
-apt-get -q=2 update && apt-get -q=2 install --no-install-recommends ajenti > /dev/null
+echo -e "${red}Configuring the browser-based system administration tool ${blue}(Ajenti)${red}...${NC}\n"
 service ajenti stop
 # Changing to default https port
 sed -i 's/"port": 8000/"port": 443/' /etc/ajenti/config.json
 echo -e "\n${green}Done!${NC}\n"
-
-echo -e "${red}Adding SanicKiosk plugins to Ajenti...${NC}\n"
+# Linking SanicKiosk plugins to Ajenti
 ln -s /home/sanickiosk/sanickiosk/ajenti_plugins/sanickiosk_browser /var/lib/ajenti/plugins/sanickiosk_browser
 ln -s /home/sanickiosk/sanickiosk/ajenti_plugins/sanickiosk_screensaver /var/lib/ajenti/plugins/sanickiosk_screensaver
 echo -e "${green}Done!${NC}\n"
 
-echo -e "${red}Installing audio...${NC}\n"
-apt-get -q=2 install --no-install-recommends alsa > /dev/null
+echo -e "${red}Enabling audio...${NC}\n"
 adduser sanickiosk audio
 echo -e "\n${green}Done!${NC}\n"
 
-echo -e "${red}Installing print server...${NC}\n"
-tasksel install print-server > /dev/null
+echo -e "${red}Setting up print server...${NC}\n"
 usermod -aG lpadmin sanickiosk
 usermod -aG lp,sys sanickiosk
 rm -f /etc/cups/cupsd.conf
 ln -s /home/sanickiosk/sanickiosk/etc/cups/cupsd.conf /etc/cups/cupsd.conf
-echo -e "${green}Done!${NC}\n"
-
-echo -e "${red}Installing touchscreen support...${NC}\n"
-apt-get -q=2 install --no-install-recommends xserver-xorg-input-multitouch xinput-calibrator > /dev/null
-echo -e "${green}Done!${NC}\n"
-
-echo -e "${red}Adding the customized image installation maker ${blue}(Systemback)${red}...${NC}\n"
-add-apt-repository -y ppa:nemh/systemback
-apt-get -q=2 update && apt-get -q=2 install --no-install-recommends systemback-cli
 echo -e "${green}Done!${NC}\n"
 
 echo -e "${red}Locking down the SanicKiosk user...${NC}\n"
