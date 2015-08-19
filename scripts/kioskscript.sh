@@ -43,10 +43,10 @@ setterm -powersave off -blank 0 $log_it
 echo -e "${red}Installing operating system updates ${yellow}(this may take a while)${red}...${nc}"
 # Use mirror method
 sed -i "1i \
-deb mirror://mirrors.ubuntu.com/mirrors.txt $VERSION main restricted universe multiverse\n\
-deb mirror://mirrors.ubuntu.com/mirrors.txt $VERSION-updates main restricted universe multiverse\n\
-deb mirror://mirrors.ubuntu.com/mirrors.txt $VERSION-backports main restricted universe multiverse\n\
-deb mirror://mirrors.ubuntu.com/mirrors.txt $VERSION-security main restricted universe multiverse\n\
+deb mirror://mirrors.ubuntu.com/mirrors.txt $version main restricted universe multiverse\n\
+deb mirror://mirrors.ubuntu.com/mirrors.txt $version-updates main restricted universe multiverse\n\
+deb mirror://mirrors.ubuntu.com/mirrors.txt $version-backports main restricted universe multiverse\n\
+deb mirror://mirrors.ubuntu.com/mirrors.txt $version-security main restricted universe multiverse\n\
 " /etc/apt/sources.list > /dev/null
 # Refresh
 apt-get -q update $log_it
@@ -66,11 +66,11 @@ deb http://repo.ajenti.org/ng/debian main main ubuntu
 # Systemback
 apt-key adv --keyserver keyserver.ubuntu.com --recv-keys 73C62A1B $log_it
 echo -e "
-deb http://ppa.launchpad.net/nemh/systemback/ubuntu $VERSION main
+deb http://ppa.launchpad.net/nemh/systemback/ubuntu $version main
 "  >> /etc/apt/sources.list.d/systemback.list $log_it
 # Flash
 echo -e "
-deb http://archive.canonical.com/ubuntu/ $VERSION partner
+deb http://archive.canonical.com/ubuntu/ $version partner
 "  >> /etc/apt/sources.list.d/canonical_partner.list $log_it
 apt-get -q update $log_it
 packagelist=(
@@ -104,7 +104,7 @@ echo -e "${green}Done!${nc}"
 
 echo -e "${red}Configuring the screensaver...${nc}"
 # Link .xscreensaver
-ln -s $install_dir/xscreensaver $HOME_DIR/.xscreensaver $log_it
+ln -s $install_dir/xscreensaver $home_dir/.xscreensaver $log_it
 # Add a sample image
 wget -q http://beginwithsoftware.com/wallpapers/archive/Various/images/free_desktop_wallpaper_logo_space_for_rent_1024x768.gif -O $install_dir/screensavers/deleteme.gif $log_it
 echo -e "${green}Done!${nc}"
@@ -122,9 +122,9 @@ echo -e "${green}Done!${nc}"
 
 echo -e "${red}Setting up the SanicKiosk scripts...${nc}"
 # Link .xsession
-ln -s $install_dir/xsession $HOME_DIR/.xsession $log_it
+ln -s $install_dir/xsession $home_dir/.xsession $log_it
 # Set correct user and group permissions for /home/kiosk
-chown -R $USER:$USER $HOME_DIR $log_it
+chown -R $user:$user $home_dir $log_it
 # Set scripts to exexutable
 find $install_dir/scripts -type f -exec chmod +x {} \; $log_it
 echo -e "${green}Done!${nc}"
@@ -139,18 +139,18 @@ ln -s $install_dir/ajenti_plugins/sanickiosk_screensaver /var/lib/ajenti/plugins
 echo -e "${green}Done!${nc}"
 
 echo -e "${red}Enabling audio...${nc}"
-adduser $USER audio $log_it
+adduser $user audio $log_it
 echo -e "${green}Done!${nc}"
 
 echo -e "${red}Setting up print server...${nc}"
-usermod -aG lpadmin $USER $log_it
-usermod -aG lp,sys $USER $log_it
+usermod -aG lpadmin $user $log_it
+usermod -aG lp,sys $user $log_it
 rm -f /etc/cups/cupsd.conf $log_it
 ln -s $install_dir/etc/cups/cupsd.conf /etc/cups/cupsd.conf $log_it
 echo -e "${green}Done!${nc}"
 
 echo -e "${red}Locking down the SanicKiosk user...${nc}"
-#deluser $USER sudo
+#deluser $user sudo
 echo -e "${green}Done!${nc}\n"
 
 if [[ -s $install_dir/logs/kioskscript.log ]] ; then
