@@ -65,12 +65,12 @@ echo -e "${green}Done!${nc}"
 echo -e "${red}Installing software ${orange}(this will take a while)${red}...${nc}"
 # Ajenti
 wget -q http://repo.ajenti.org/debian/key -O- | apt-key add - >> $shh 2>> $log_it
-echo 'deb http://repo.ajenti.org/ng/debian main main ubuntu' > /etc/apt/sources.list.d/ajenti.list >> $shh 2>> $log_it
+echo 'deb http://repo.ajenti.org/ng/debian main main ubuntu' > /etc/apt/sources.list.d/ajenti.list
 # Systemback
 apt-key adv --keyserver keyserver.ubuntu.com --recv-keys 73C62A1B >> $shh 2>> $log_it
-echo -e "deb http://ppa.launchpad.net/nemh/systemback/ubuntu $ver_code main" > /etc/apt/sources.list.d/systemback.list >> $shh 2>> $log_it
+echo -e "deb http://ppa.launchpad.net/nemh/systemback/ubuntu $ver_code main" > /etc/apt/sources.list.d/systemback.list
 # Flash
-echo -e "deb http://archive.canonical.com/ubuntu/ $ver_code partner" > /etc/apt/sources.list.d/canonical_partner.list >> $shh 2>> $log_it
+echo -e "deb http://archive.canonical.com/ubuntu/ $ver_code partner" > /etc/apt/sources.list.d/canonical_partner.list
 apt-get -q update >> $shh 2>> $log_it
 packagelist=(
   alsa # Audio
