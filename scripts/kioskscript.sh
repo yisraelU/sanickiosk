@@ -151,6 +151,8 @@ echo -e "${red}Locking down the SanicKiosk user...${NC}"
 echo -e "${green}Done!${NC}\n"
 
 if [[ -s $INSTALL_DIR/logs/kioskscript.log ]] ; then
+  echo -e "${red}Errors recorded. Please see $INSTALL_DIR/logs/kioskscript.log${NC}"
+else
   echo -e "${green}No errors reported. Reboot?${NC}"
   select yn in "Yes" "No"; do
           case $yn in
@@ -160,6 +162,4 @@ if [[ -s $INSTALL_DIR/logs/kioskscript.log ]] ; then
                           break ;;
           esac
   done
-else
-  echo -e "${red}Errors recorded. Please see $INSTALL_DIR/logs/kioskscript.log${NC}"
 fi ;
