@@ -44,12 +44,12 @@ echo -e "${red}Installing Sanickiosk on $NAME $VERSION...${nc}\n"
 
 echo -e "${red}Performing operating system updates ${orange}(this may take a while)${red}...${nc}"
 # Use mirror method
-sed -i "1i \
-deb mirror://mirrors.ubuntu.com/mirrors.txt $ver_code main restricted universe multiverse\n\
-deb mirror://mirrors.ubuntu.com/mirrors.txt $ver_code-updates main restricted universe multiverse\n\
-deb mirror://mirrors.ubuntu.com/mirrors.txt $ver_code-backports main restricted universe multiverse\n\
-deb mirror://mirrors.ubuntu.com/mirrors.txt $ver_code-security main restricted universe multiverse\n\
-" /etc/apt/sources.list
+#sed -i "1i \
+#deb mirror://mirrors.ubuntu.com/mirrors.txt $ver_code main restricted universe multiverse\n\
+#deb mirror://mirrors.ubuntu.com/mirrors.txt $ver_code-updates main restricted universe multiverse\n\
+#deb mirror://mirrors.ubuntu.com/mirrors.txt $ver_code-backports main restricted universe multiverse\n\
+#deb mirror://mirrors.ubuntu.com/mirrors.txt $ver_code-security main restricted universe multiverse\n\
+#" /etc/apt/sources.list
 # Refresh
 apt-get -q update >> $shh 2>> $log_it
 # Download & Install
@@ -84,8 +84,8 @@ packagelist=(
   software-properties-common python-software-properties # Enable PPA installs
   systemback-cli # Systemback custom image maker
 )
-apt-get -qy install --no-install-recommends ${packagelist[@]} #>> $shh 2>> $log_it
-tasksel install print-server #>> $shh 2>> $log
+apt-get -qy install --no-install-recommends ${packagelist[@]} >> $shh 2>> $log_it
+tasksel install print-server >> $shh 2>> $log
 echo -e "${green}Done!${nc}"
 
 echo -e "${red}Disabling root recovery mode...${nc}"
