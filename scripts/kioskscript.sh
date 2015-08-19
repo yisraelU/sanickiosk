@@ -48,12 +48,12 @@ echo -e "${green}Done!${NC}\n"
 
 echo -e "${red}Installing software ${blue}(this may take a while too)${red}...${NC}\n"
 # Ajenti
-wget -q http://repo.ajenti.org/debian/key -O- | apt-key add -
+wget -q http://repo.ajenti.org/debian/key -O- | apt-key add - > /dev/null
 echo '
 deb http://repo.ajenti.org/ng/debian main main ubuntu
 '  >> /etc/apt/sources.list.d/ajenti.list
 # Systemback
-apt-key adv --keyserver keyserver.ubuntu.com --recv-keys 73C62A1B
+apt-key adv --keyserver keyserver.ubuntu.com --recv-keys 73C62A1B > /dev/null
 echo -e "
 deb http://ppa.launchpad.net/nemh/systemback/ubuntu $VERSION main
 "  >> /etc/apt/sources.list.d/systemback.list
