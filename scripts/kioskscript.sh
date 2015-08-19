@@ -25,10 +25,10 @@ clear
 . `dirname $PWD`/config/system.cfg
 
 # Set Log
+mkdir $install_dir/logs && touch $install_dir/logs/kioskscript.log # Create log directory and file
 log_it="> /dev/null 2> $install_dir/logs/kioskscript.log"
 
-# Make required empty directories
-mkdir $install_dir/logs && touch $install_dir/logs/kioskscript.log # Create log file
+# Make empty directories
 mkdir $install_dir/screensavers $log_it
 
 # Pretty colors
