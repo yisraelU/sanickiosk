@@ -37,13 +37,13 @@ mkdir $install_dir/screensavers >> $shh 2>> $log_it
 # Pretty colors
 red='\e[1;31m'
 green='\e[1;32m'
-yellow='\e[0;33m'
+orange='\e[0;33m'
 nc='\e[0m' # No color
 
 # Prevent terminal blanking
 setterm -powersave off -blank 0 >> $shh 2>> $log_it
 
-echo -e "${red}Installing operating system updates ${yellow}(this may take a while)${red}...${nc}"
+echo -e "${red}Installing operating system updates ${orange}(this may take a while)${red}...${nc}"
 # Use mirror method
 sed -i "1i \
 deb mirror://mirrors.ubuntu.com/mirrors.txt $version main restricted universe multiverse\n\
@@ -60,7 +60,7 @@ apt-get -q autoremove >> $shh 2>> $log_it
 apt-get -q clean >> $shh 2>> $log_it
 echo -e "${green}Done!${nc}"
 
-echo -e "${red}Installing software ${yellow}(this will take a while)${red}...${nc}"
+echo -e "${red}Installing software ${orange}(this will take a while)${red}...${nc}"
 # Ajenti
 wget -q http://repo.ajenti.org/debian/key -O- | apt-key add - >> $shh 2>> $log_it
 echo '
@@ -112,7 +112,7 @@ ln -s $install_dir/xscreensaver $home_dir/.xscreensaver >> $shh 2>> $log_it
 wget -q http://beginwithsoftware.com/wallpapers/archive/Various/images/free_desktop_wallpaper_logo_space_for_rent_1024x768.gif -O $install_dir/screensavers/deleteme.gif >> $shh 2>> $log_it
 echo -e "${green}Done!${nc}"
 
-echo -e "${red}Configuring the browser ${yellow}(Firefox)${red}...${nc}"
+echo -e "${red}Configuring the browser ${orange}(Firefox)${red}...${nc}"
 # Overwrite default Opera Bookmarks
 #find /usr/share/opera -name "bookmarks.adr" -print0 | xargs -0 rm -rf
 # Delete default Opera Speed Dial
@@ -132,7 +132,7 @@ chown -R $user:$user $home_dir >> $shh 2>> $log_it
 find $install_dir/scripts -type f -exec chmod +x {} \; >> $shh 2>> $log_it
 echo -e "${green}Done!${nc}"
 
-echo -e "${red}Configuring the browser-based system administration tool ${yellow}(Ajenti)${red}...${nc}"
+echo -e "${red}Configuring the browser-based system administration tool ${orange}(Ajenti)${red}...${nc}"
 service ajenti stop >> $shh 2>> $log_it
 # Changing to default https port
 sed -i 's/"port": 8000/"port": 443/' /etc/ajenti/config.json >> $shh 2>> $log_it
@@ -156,9 +156,9 @@ echo -e "${red}Locking down the SanicKiosk user...${nc}"
 #deluser $user sudo
 echo -e "${green}Done!${nc}\n"
 
-echo -e "${green}Instalation log saved to $install_dir/logs/kioskscript.log.${nc}"
+echo -e "${red}Installation log saved to ${orange}$install_dir/logs/kioskscript.log${red}.${nc}"
 
-echo -e "${green}\n\nReboot?${nc}"
+echo -e "${green}\nReboot?${nc}"
 select yn in "Yes" "No"; do
         case $yn in
                 Yes )
