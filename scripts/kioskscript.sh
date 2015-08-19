@@ -32,10 +32,10 @@ VERSION=$(lsb_release -cs)
 echo -e "${red}Installing operating system updates ${blue}(this may take a while)${red}...${NC}\n"
 # Use mirror method
 sed -i "1i \
-deb mirror://mirrors.ubuntu.com/mirrors.txt $VERSION main restricted universe multiverse partner\n\
-deb mirror://mirrors.ubuntu.com/mirrors.txt $VERSION-updates main restricted universe multiverse partner\n\
-deb mirror://mirrors.ubuntu.com/mirrors.txt $VERSION-backports main restricted universe multiverse partner\n\
-deb mirror://mirrors.ubuntu.com/mirrors.txt $VERSION-security main restricted universe multiverse partner\n\
+deb mirror://mirrors.ubuntu.com/mirrors.txt $VERSION main restricted universe multiverse\n\
+deb mirror://mirrors.ubuntu.com/mirrors.txt $VERSION-updates main restricted universe multiverse\n\
+deb mirror://mirrors.ubuntu.com/mirrors.txt $VERSION-backports main restricted universe multiverse\n\
+deb mirror://mirrors.ubuntu.com/mirrors.txt $VERSION-security main restricted universe multiverse\n\
 " /etc/apt/sources.list
 # Refresh
 apt-get -q=2 update
@@ -47,11 +47,20 @@ apt-get -q=2 clean
 echo -e "${green}Done!${NC}\n"
 
 echo -e "${red}Installing software ${blue}(this may take a while too)${red}...${NC}\n"
+# Ajenti
 wget -q http://repo.ajenti.org/debian/key -O- | apt-key add -
 echo '
-## Ajenti
 deb http://repo.ajenti.org/ng/debian main main ubuntu
 '  >> /etc/apt/sources.list.d/ajenti.list
+# Systemback
+apt-key adv --keyserver keyserver.ubuntu.com --recv-keys 73C62A1B
+echo -e "
+deb http://ppa.launchpad.net/nemh/systemback/ubuntu $VERSION main
+"  >> /etc/apt/sources.list.d/systemback.list
+# Flash
+echo -e "
+deb http://archive.canonical.com/ubuntu/ $VERSION partner
+"  >> /etc/apt/sources.list.d/canonical_partner.list
 apt-get -q=2 update
 packagelist=(
   alsa # Audio
@@ -66,12 +75,10 @@ packagelist=(
   tasksel # Task selection
   xserver-xorg-input-multitouch xinput-calibrator # Touchscreen support
   software-properties-common python-software-properties # Enable PPA installs
+  systemback-cli # Systemback custom image maker
 )
 apt-get -q=2 install --no-install-recommends ${packagelist[@]} > /dev/null
 tasksel install print-server > /dev/null
-# Add customized image installation maker PPA
-add-apt-repository -y ppa:nemh/systemback
-apt-get -q=2 update && apt-get -q=2 install --no-install-recommends systemback-cli
 
 echo -e "${red}Disabling root recovery mode...${NC}\n"
 sed -i -e 's/#GRUB_DISABLE_RECOVERY/GRUB_DISABLE_RECOVERY/g' /etc/default/grub
