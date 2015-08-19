@@ -32,10 +32,10 @@ VERSION=$(lsb_release -cs)
 echo -e "${red}Installing operating system updates ${blue}(this may take a while)${red}...${NC}\n"
 # Use mirror method
 sed -i "1i \
-deb mirror://mirrors.ubuntu.com/mirrors.txt $VERSION main restricted universe multiverse\n\
-deb mirror://mirrors.ubuntu.com/mirrors.txt $VERSION-updates main restricted universe multiverse\n\
-deb mirror://mirrors.ubuntu.com/mirrors.txt $VERSION-backports main restricted universe multiverse\n\
-deb mirror://mirrors.ubuntu.com/mirrors.txt $VERSION-security main restricted universe multiverse\n\
+deb mirror://mirrors.ubuntu.com/mirrors.txt $VERSION main restricted universe multiverse partner\n\
+deb mirror://mirrors.ubuntu.com/mirrors.txt $VERSION-updates main restricted universe multiverse partner\n\
+deb mirror://mirrors.ubuntu.com/mirrors.txt $VERSION-backports main restricted universe multiverse partner\n\
+deb mirror://mirrors.ubuntu.com/mirrors.txt $VERSION-security main restricted universe multiverse partner\n\
 " /etc/apt/sources.list
 # Refresh
 apt-get -q=2 update
