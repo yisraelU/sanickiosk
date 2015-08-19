@@ -2,7 +2,7 @@
 
 ## Kioskscript, a script for building the Sanickiosk web kiosk
 ## August 2015
-## Tested on Ubuntu Server x86 14.04.3 fresh install
+## Tested on Ubuntu Server x64 14.04.3 fresh install
 ##
 ## Documentation: http://sanickiosk.org
 ## Download a ready-to-install ISO of Sanickiosk at: http://links.sanicki.com/sanickiosk-dl
@@ -19,50 +19,60 @@
 ## chmod +x kioskscript.sh
 ## .kioskscript.sh
 
+clear
+
+# Paths
+INSTALL_DIR=`dirname $PWD`
+HOME_DIR=`dirname $INSTALL_DIR`
+
+# User
+USER=$(stat -c '%U' $HOME_DIR)
+
+# Ubuntu Version Codename
+VERSION=$(lsb_release -cs)
+
 # Pretty colors
 red='\e[0;31m'
 green='\e[1;32m'
 blue='\e[1;36m'
 NC='\e[0m' # No color
 
-clear
+# Prevent terminal blanking
+setterm -powersave off -blank 0 > /dev/null 2>$INSTALL_DIR/logs/kioskscript.log
 
-# Determine Ubuntu Version Codename
-VERSION=$(lsb_release -cs)
-
-echo -e "${red}Installing operating system updates ${blue}(this may take a while)${red}...${NC}"
+echo -e "${red}Installing operating system updates ${blue}(this *may* take a while)${red}...${NC}"
 # Use mirror method
 sed -i "1i \
 deb mirror://mirrors.ubuntu.com/mirrors.txt $VERSION main restricted universe multiverse\n\
 deb mirror://mirrors.ubuntu.com/mirrors.txt $VERSION-updates main restricted universe multiverse\n\
 deb mirror://mirrors.ubuntu.com/mirrors.txt $VERSION-backports main restricted universe multiverse\n\
 deb mirror://mirrors.ubuntu.com/mirrors.txt $VERSION-security main restricted universe multiverse\n\
-" /etc/apt/sources.list > /dev/null 2>kioskscript.log
+" /etc/apt/sources.list > /dev/null
 # Refresh
-apt-get -q update > /dev/null 2>kioskscript.log
+apt-get -q update > /dev/null 2>$INSTALL_DIR/logs/kioskscript.log
 # Download & Install
-apt-get -q upgrade > /dev/null 2>kioskscript.log
+apt-get -q upgrade > /dev/null 2>$INSTALL_DIR/logs/kioskscript.log
 # Clean
-apt-get -q autoremove > /dev/null 2>kioskscript.log
-apt-get -q clean > /dev/null 2>kioskscript.log
+apt-get -q autoremove > /dev/null 2>$INSTALL_DIR/logs/kioskscript.log
+apt-get -q clean > /dev/null 2>$INSTALL_DIR/logs/kioskscript.log
 echo -e "${green}Done!${NC}"
 
-echo -e "${red}Installing software ${blue}(this may take a while too)${red}...${NC}"
+echo -e "${red}Installing software ${blue}(this **will** take a while)${red}...${NC}"
 # Ajenti
-wget -q http://repo.ajenti.org/debian/key -O- | apt-key add - > /dev/null 2>kioskscript.log
+wget -q http://repo.ajenti.org/debian/key -O- | apt-key add - > /dev/null 2>$INSTALL_DIR/logs/kioskscript.log
 echo '
 deb http://repo.ajenti.org/ng/debian main main ubuntu
-'  >> /etc/apt/sources.list.d/ajenti.list > /dev/null 2>kioskscript.log
+'  >> /etc/apt/sources.list.d/ajenti.list > /dev/null 2>$INSTALL_DIR/logs/kioskscript.log
 # Systemback
-apt-key adv --keyserver keyserver.ubuntu.com --recv-keys 73C62A1B > /dev/null 2>kioskscript.log
+apt-key adv --keyserver keyserver.ubuntu.com --recv-keys 73C62A1B > /dev/null 2>$INSTALL_DIR/logs/kioskscript.log
 echo -e "
 deb http://ppa.launchpad.net/nemh/systemback/ubuntu $VERSION main
-"  >> /etc/apt/sources.list.d/systemback.list > /dev/null 2>kioskscript.log
+"  >> /etc/apt/sources.list.d/systemback.list > /dev/null 2>$INSTALL_DIR/logs/kioskscript.log
 # Flash
 echo -e "
 deb http://archive.canonical.com/ubuntu/ $VERSION partner
-"  >> /etc/apt/sources.list.d/canonical_partner.list > /dev/null 2>kioskscript.log
-apt-get -q update > /dev/null 2>kioskscript.log
+"  >> /etc/apt/sources.list.d/canonical_partner.list > /dev/null 2>$INSTALL_DIR/logs/kioskscript.log
+apt-get -q update > /dev/null 2>$INSTALL_DIR/logs/kioskscript.log
 packagelist=(
   alsa # Audio
   ajenti # Browser-based system administration tool
@@ -78,28 +88,28 @@ packagelist=(
   software-properties-common python-software-properties # Enable PPA installs
   systemback-cli # Systemback custom image maker
 )
-apt-get -q install --no-install-recommends ${packagelist[@]} > /dev/null 2>kioskscript.log
-tasksel install print-server > /dev/null 2>kioskscript.log
+apt-get -q install --no-install-recommends ${packagelist[@]} > /dev/null 2>$INSTALL_DIR/logs/kioskscript.log
+tasksel install print-server > /dev/null 2>$INSTALL_DIR/logs/kioskscript.log
 echo -e "${green}Done!${NC}"
 
 echo -e "${red}Disabling root recovery mode...${NC}"
-sed -i -e 's/#GRUB_DISABLE_RECOVERY/GRUB_DISABLE_RECOVERY/g' /etc/default/grub > /dev/null 2>kioskscript.log
-update-grub > /dev/null 2>kioskscript.log
+sed -i -e 's/#GRUB_DISABLE_RECOVERY/GRUB_DISABLE_RECOVERY/g' /etc/default/grub > /dev/null 2>$INSTALL_DIR/logs/kioskscript.log
+update-grub > /dev/null 2>$INSTALL_DIR/logs/kioskscript.log
 echo -e "${green}Done!${NC}"
 
 echo -e "${red}Configuring autologin...${NC}"
-sed -i -e 's/NODM_ENABLED=false/NODM_ENABLED=true/g' /etc/default/nodm > /dev/null 2>kioskscript.log
-sed -i -e 's/NODM_USER=root/NODM_USER=sanickiosk/g' /etc/default/nodm > /dev/null 2>kioskscript.log
+sed -i -e 's/NODM_ENABLED=false/NODM_ENABLED=true/g' /etc/default/nodm > /dev/null 2>$INSTALL_DIR/logs/kioskscript.log
+sed -i -e 's/NODM_USER=root/NODM_USER=sanickiosk/g' /etc/default/nodm > /dev/null 2>$INSTALL_DIR/logs/kioskscript.log
 echo -e "${green}Done!${NC}"
 
 echo -e "${red}Configuring the screensaver...${NC}"
 # Link .xscreensaver
-ln -s /home/sanickiosk/sanickiosk/xscreensaver /home/sanickiosk/.xscreensaver > /dev/null 2>kioskscript.log
-# Create the screensaver directory
-mkdir /home/sanickiosk/screensavers > /dev/null 2>kioskscript.log
+ln -s $INSTALL_DIR/xscreensaver $HOME_DIR/.xscreensaver > /dev/null 2>$INSTALL_DIR/logs/kioskscript.log
+# Link screensaver directory
+ln -s $INSTALL_DIR/screensavers $HOME_DIR/screensavers > /dev/null 2>$INSTALL_DIR/logs/kioskscript.log
 # Add a sample image
-wget -q http://beginwithsoftware.com/wallpapers/archive/Various/images/free_desktop_wallpaper_logo_space_for_rent_1024x768.gif -O /home/sanickiosk/screensavers/deleteme.gif > /dev/null 2>kioskscript.log
-echo -e "\n${green}Done!${NC}"
+wget -q http://beginwithsoftware.com/wallpapers/archive/Various/images/free_desktop_wallpaper_logo_space_for_rent_1024x768.gif -O /home/sanickiosk/screensavers/deleteme.gif > /dev/null 2>$INSTALL_DIR/logs/kioskscript.log
+echo -e "${green}Done!${NC}"
 
 echo -e "${red}Configuring the browser ${blue}(Firefox)${red}...${NC}"
 # Overwrite default Opera Bookmarks
@@ -110,39 +120,39 @@ echo -e "${red}Configuring the browser ${blue}(Firefox)${red}...${NC}"
 #ln -s /home/sanickiosk/sanickiosk/.opera/speeddial.sav /home/sanickiosk/.opera/speeddial.sav
 # Link the Opera filter
 #ln -s /home/sanickiosk/sanickiosk/.opera/urlfilter.ini /home/sanickiosk/.opera/urlfilter.ini
-echo -e "\n${green}Done!${NC}"
+echo -e "${green}Done!${NC}"
 
 echo -e "${red}Setting up the SanicKiosk scripts...${NC}"
 # Link .xsession
-ln -s /home/sanickiosk/sanickiosk/xsession /home/sanickiosk/.xsession > /dev/null 2>kioskscript.log
+ln -s $INSTALL_DIR/xsession $HOME_DIR/.xsession > /dev/null 2>$INSTALL_DIR/logs/kioskscript.log
 # Set correct user and group permissions for /home/kiosk
-chown -R sanickiosk:sanickiosk /home/sanickiosk/ > /dev/null 2>kioskscript.log
+chown -R $USER:$USER $HOME_DIR > /dev/null 2>$INSTALL_DIR/logs/kioskscript.log
 # Set scripts to exexutable
-find /home/sanickiosk/sanickiosk/scripts -type f -exec chmod +x {} \; > /dev/null 2>kioskscript.log
+find $INSTALL_DIR/scripts -type f -exec chmod +x {} \; > /dev/null 2>$INSTALL_DIR/logs/kioskscript.log
 echo -e "${green}Done!${NC}"
 
 echo -e "${red}Configuring the browser-based system administration tool ${blue}(Ajenti)${red}...${NC}"
-service ajenti stop > /dev/null 2>kioskscript.log
+service ajenti stop > /dev/null 2>$INSTALL_DIR/logs/kioskscript.log
 # Changing to default https port
-sed -i 's/"port": 8000/"port": 443/' /etc/ajenti/config.json > /dev/null 2>kioskscript.log
+sed -i 's/"port": 8000/"port": 443/' /etc/ajenti/config.json > /dev/null 2>$INSTALL_DIR/logs/kioskscript.log
 # Linking SanicKiosk plugins to Ajenti
-ln -s /home/sanickiosk/sanickiosk/ajenti_plugins/sanickiosk_browser /var/lib/ajenti/plugins/sanickiosk_browser > /dev/null 2>kioskscript.log
-ln -s /home/sanickiosk/sanickiosk/ajenti_plugins/sanickiosk_screensaver /var/lib/ajenti/plugins/sanickiosk_screensaver > /dev/null 2>kioskscript.log
+ln -s $INSTALL_DIR/ajenti_plugins/sanickiosk_browser /var/lib/ajenti/plugins/sanickiosk_browser > /dev/null 2>$INSTALL_DIR/logs/kioskscript.log
+ln -s $INSTALL_DIR/ajenti_plugins/sanickiosk_screensaver /var/lib/ajenti/plugins/sanickiosk_screensaver > /dev/null 2>$INSTALL_DIR/logs/kioskscript.log
 echo -e "${green}Done!${NC}"
 
 echo -e "${red}Enabling audio...${NC}"
-adduser sanickiosk audio > /dev/null 2>kioskscript.log
+adduser $USER audio > /dev/null 2>$INSTALL_DIR/logs/kioskscript.log
 echo -e "${green}Done!${NC}"
 
 echo -e "${red}Setting up print server...${NC}"
-usermod -aG lpadmin sanickiosk > /dev/null 2>kioskscript.log
-usermod -aG lp,sys sanickiosk > /dev/null 2>kioskscript.log
-rm -f /etc/cups/cupsd.conf > /dev/null 2>kioskscript.log
-ln -s /home/sanickiosk/sanickiosk/etc/cups/cupsd.conf /etc/cups/cupsd.conf > /dev/null 2>kioskscript.log
+usermod -aG lpadmin $USER > /dev/null 2>$INSTALL_DIR/logs/kioskscript.log
+usermod -aG lp,sys $USER > /dev/null 2>$INSTALL_DIR/logs/kioskscript.log
+rm -f /etc/cups/cupsd.conf > /dev/null 2>$INSTALL_DIR/logs/kioskscript.log
+ln -s $INSTALL_DIR/etc/cups/cupsd.conf /etc/cups/cupsd.conf > /dev/null 2>$INSTALL_DIR/logs/kioskscript.log
 echo -e "${green}Done!${NC}"
 
 echo -e "${red}Locking down the SanicKiosk user...${NC}"
-#deluser sanickiosk sudo
+#deluser $USER sudo
 echo -e "${green}Done!${NC}\n"
 
 echo -e "${green}Reboot?${NC}"
