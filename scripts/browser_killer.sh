@@ -1,6 +1,12 @@
 #!/bin/bash
+# Import system info
+. `dirname $PWD`/config/system.cfg
+
+# Set Log
+log_it="> /dev/null 2>$install_dir/logs/sanickiosk.log"
+
 # Import variables
-. /home/sanickiosk/sanickiosk/config/browser.cfg
+. $install_dir/config/browser.cfg
 
 # Wanted trigger timeout in milliseconds.
 IDLE_TIME=$(($browser_idle*60*1000))

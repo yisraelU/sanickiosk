@@ -1,7 +1,13 @@
 #!/bin/bash
 
+# Import system info
+. `dirname $PWD`/config/system.cfg
+
+# Set Log
+log_it="> /dev/null 2>$install_dir/logs/sanickiosk.log"
+
 # Import variables
-. /home/sanickiosk/sanickiosk/config/browser.cfg
+. $install_dir/config/browser.cfg
 
 echo "
 Opera Preferences version 2.1
