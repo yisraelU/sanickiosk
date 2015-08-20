@@ -34,17 +34,17 @@ if [[ $UID != 0 ]]; then
 fi
 
 # Import system info
-. ~/sanickiosk/config/system.cfg
+. sanickiosk/config/system.cfg
 
 # Set Log
-mkdir ~/sanickiosk/logs && touch ~/sanickiosk/logs/kioskscript.log # Create log directory and file
-log_it="~/sanickiosk/logs/kioskscript.log"
+mkdir sanickiosk/logs && touch sanickiosk/logs/kioskscript.log # Create log directory and file
+log_it="sanickiosk/logs/kioskscript.log"
 
 # Quiet
 shh="/dev/null"
 
 # Make empty directories
-mkdir ~/sanickiosk/screensavers >> $shh 2>> $log_it
+mkdir sanickiosk/screensavers >> $shh 2>> $log_it
 
 echo -e "${red}Installing Sanickiosk on $NAME $VERSION.${nc}\n"
 
@@ -97,7 +97,7 @@ echo -e "${green}Done!${nc}"
 
 echo -e "${red}Configuring the screensaver ${yellow}(XScreenSaver)${red}...${nc}"
 # Link .xscreensaver
-ln -s ~/sanickiosk/xscreensaver .xscreensaver >> $shh 2>> $log_it
+ln -s sanickiosk/xscreensaver .xscreensaver >> $shh 2>> $log_it
 # Add a sample image
 wget -q http://beginwithsoftware.com/wallpapers/archive/Various/images/free_desktop_wallpaper_logo_space_for_rent_1024x768.gif -O sanickiosk/screensavers/deleteme.gif >> $shh 2>> $log_it
 echo -e "${green}Done!${nc}"
@@ -108,11 +108,11 @@ echo -e "${green}Done!${nc}"
 
 echo -e "${red}Setting up the SanicKiosk scripts...${nc}"
 # Link .xsession
-ln -s ~/sanickiosk/xsession .xsession >> $shh 2>> $log_it
+ln -s sanickiosk/xsession .xsession >> $shh 2>> $log_it
 # Set correct user and group permissions for home directory
 chown -R $user:$user $home_dir >> $shh 2>> $log_it
 # Unnecessarily making sure all scripts to exexutable
-find ~/sanickiosk/scripts -type f -exec chmod +x {} \; >> $shh 2>> $log_it
+find sanickiosk/scripts -type f -exec chmod +x {} \; >> $shh 2>> $log_it
 echo -e "${green}Done!${nc}"
 
 echo -e "${red}Configuring the browser-based system administration tool ${yellow}(Ajenti)${red}...${nc}"
@@ -120,8 +120,8 @@ service ajenti stop >> $shh 2>> $log_it
 # Changing to default https port
 sed -i 's/"port": 8000/"port": 443/' /etc/ajenti/config.json >> $shh 2>> $log_it
 # Linking SanicKiosk plugins to Ajenti
-ln -s ~/sanickiosk/ajenti_plugins/sanickiosk_browser /var/lib/ajenti/plugins/sanickiosk_browser >> $shh 2>> $log_it
-ln -s ~/sanickiosk/ajenti_plugins/sanickiosk_screensaver /var/lib/ajenti/plugins/sanickiosk_screensaver >> $shh 2>> $log_it
+ln -s sanickiosk/ajenti_plugins/sanickiosk_browser /var/lib/ajenti/plugins/sanickiosk_browser >> $shh 2>> $log_it
+ln -s sanickiosk/ajenti_plugins/sanickiosk_screensaver /var/lib/ajenti/plugins/sanickiosk_screensaver >> $shh 2>> $log_it
 echo -e "${green}Done!${nc}"
 
 echo -e "${red}Enabling audio...${nc}"
@@ -132,7 +132,7 @@ echo -e "${red}Locking down the SanicKiosk user...${nc}"
 #deluser $user sudo
 echo -e "${green}Done!${nc}\n"
 
-echo -e "${red}Installation log saved to ${yellow}~/sanickiosk/logs/kioskscript.log${red}.${nc}"
+echo -e "${red}Installation log saved to ${yellow}sanickiosk/logs/kioskscript.log${red}.${nc}"
 
 echo -e "${green}\nReboot?${nc}"
 select yn in "Yes" "No"; do

@@ -53,7 +53,7 @@ class SanicKioskScreensaverPrefs (SectionPlugin):
 		self.binder.populate()
 
 		all_vars = '\n'.join([k + '="' + str(v) + '"' for k,v in self.classconfig.iteritems()])
-		open('~/sanickiosk/config/browser.cfg', 'w').write(all_vars) #save
+		open('sanickiosk/config/browser.cfg', 'w').write(all_vars) #save
 
 #	@on('speeddial_edit', 'click')
 #	def speeddial_edit(self):

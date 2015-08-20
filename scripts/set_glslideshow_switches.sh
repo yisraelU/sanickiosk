@@ -1,16 +1,16 @@
 #!/bin/bash
 
 # Import system info
-. ~/sanickiosk/config/system.cfg
+. sanickiosk/config/system.cfg
 
 # Set Log
-log_it="~/sanickiosk/logs/kioskscript.log"
+log_it="sanickiosk/logs/kioskscript.log"
 
 # Quiet
 shh="/dev/null"
 
 # Import variables
-. ~/sanickiosk/config/browser.cfg
+. sanickiosk/config/browser.cfg
 
 switches=""
 for option in glslideshow_duration glslideshow_pan glslideshow_fade glslideshow_zoom glslideshow_clip ; do
@@ -33,4 +33,4 @@ for option in glslideshow_duration glslideshow_pan glslideshow_fade glslideshow_
 	fi
 done
 
-echo $switches > ~/sanickiosk/config/glslideshow_switches.cfg
+echo $switches > sanickiosk/config/glslideshow_switches.cfg

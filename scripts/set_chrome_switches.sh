@@ -1,18 +1,18 @@
 #!/bin/bash
 
 # Import system info
-. ~/sanickiosk/config/system.cfg
+. sanickiosk/config/system.cfg
 
 # Set Log
-log_it="~/sanickiosk/logs/kioskscript.log"
+log_it="sanickiosk/logs/kioskscript.log"
 
 # Quiet
 shh="/dev/null"
 
 # Import variables
-. ~/sanickiosk/config/browser.cfg
+. sanickiosk/config/browser.cfg
 
-# Get SanicKiosk extension app id 
+# Get SanicKiosk extension app id
 str=`cat ~/.config/google-chrome/Default/Preferences` # Read file as string
 IFS=’\"’ read -ra blocks <<< "$str" echo ${blocks[1]} # Convert string to array
 
@@ -39,4 +39,4 @@ for option in kioskmode fullscreen nokeys nomenu nodownload noprint nomaillinks 
 	fi
 done
 
-echo $switches > ~/sanickiosk/config/chrome_switches.cfg
+echo $switches > sanickiosk/config/chrome_switches.cfg
