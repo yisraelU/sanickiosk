@@ -14,7 +14,6 @@
 ## To use this script:
 ## sudo apt-get install -y git
 ## git clone https://github.com/sanicki/sanickiosk
-## cd sanickiosk/scripts
 ## chmod +x sanickiosk/scripts/kioskscript.sh
 ## sudo ./sanickiosk/scripts/kioskscript.sh
 ##
