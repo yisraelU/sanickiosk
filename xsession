@@ -60,7 +60,6 @@ matchbox-window-manager -use_titlebar no &
 
 # Relaunch browser if closed
 while true; do
-	chromium-browser --load-extension=sanickiosk/chrome_extensions/sanickiosk --load-extension=sanickiosk/chrome_extensions/virtual_keyboard $browser_switches $home_url
-	#firefox $browser_switches $home_url
+	chromium-browser --load-extension=sanickiosk/chrome_extensions/sanickiosk --kiosk #$browser_switches
 	sleep 5s
 done
