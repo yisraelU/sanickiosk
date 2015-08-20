@@ -14,7 +14,6 @@
 ## To use this script:
 ## sudo apt-get install -y git
 ## git clone https://github.com/sanicki/sanickiosk
-## chmod +x sanickiosk/scripts/kioskscript.sh
 ## sudo ./sanickiosk/scripts/kioskscript.sh
 ##
 ## If testing in Virtualbox insert Guest Additions CD image and:
@@ -112,7 +111,7 @@ echo -e "${red}Setting up the SanicKiosk scripts...${nc}"
 ln -s ~/sanickiosk/xsession .xsession >> $shh 2>> $log_it
 # Set correct user and group permissions for home directory
 chown -R $user:$user $home_dir >> $shh 2>> $log_it
-# Set scripts to exexutable
+# Unnecessarily making sure all scripts to exexutable
 find ~/sanickiosk/scripts -type f -exec chmod +x {} \; >> $shh 2>> $log_it
 echo -e "${green}Done!${nc}"
 
