@@ -33,4 +33,4 @@ class SanicKioskScreensaverPrefs (SectionPlugin):
 		self.binder.populate()
 
 		all_vars = '\n'.join([k + '="' + str(v) + '"' for k,v in self.classconfig.iteritems()])
-		open('/home/sanickiosk/sanickiosk/config/screensaver.cfg', 'w').write(all_vars) #save
+		open('~/sanickiosk/config/screensaver.cfg', 'w').write(all_vars) #save

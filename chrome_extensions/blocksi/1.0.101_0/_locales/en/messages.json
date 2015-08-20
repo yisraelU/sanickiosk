@@ -1,0 +1,908 @@
+{
+   "Url": {
+      "message": "Url"
+   },
+   "accessExample": {
+      "message": "Example: To block internet access from: 8:00 AM to 10:00 AM on Monday, mark the corresponding cells (08 and 09 in the second line) red by clicking on them."
+   },
+   "accessTimeDsc": {
+      "message": "Time control will disable internet access from 'Start blocking' until 'Stop blocking'."
+   },
+   "accessVal": {
+      "message": "Stop blocking time must be bigger than Start blocking!"
+   },
+   "action": {
+      "message": "Action"
+   },
+   "activate": {
+      "message": "Activate"
+   },
+   "activationCode": {
+      "message": "Activation Code"
+   },
+   "add": {
+      "message": "Add"
+   },
+   "addAccessTime": {
+      "message": "Add to list"
+   },
+   "adult": {
+      "message": "Adults"
+   },
+   "allfields": {
+      "message": "Please select all required fields"
+   },
+   "allow": {
+      "message": "Allow"
+   },
+   "app_description": {
+      "message": "Web Filter and Parental Control application. Protects your employees, students and family from inappropriate content."
+   },
+   "block": {
+      "message": "Block"
+   },
+   "bm1": {
+      "message": "Click here to register for Blocksi Manager"
+   },
+   "bm2": {
+      "message": "Create user account"
+   },
+   "bm3": {
+      "message": "Copy&paste Activation code"
+   },
+   "bwlistDsc": {
+      "message": "You can allow or block access to specific URLs by adding them to the Web URL filter list."
+   },
+   "channel": {
+      "message": "Channel Name"
+   },
+   "check": {
+      "message": "check"
+   },
+   "clearacti": {
+      "message": "Clear activation"
+   },
+   "clpass": {
+      "message": "Clear password"
+   },
+   "cpass": {
+      "message": "Confirm password"
+   },
+   "day": {
+      "message": "Day"
+   },
+   "day0": {
+      "message": "Sunday"
+   },
+   "day1": {
+      "message": "Monday"
+   },
+   "day2": {
+      "message": "Tuesday"
+   },
+   "day3": {
+      "message": "Wednesday"
+   },
+   "day4": {
+      "message": "Thursday"
+   },
+   "day5": {
+      "message": "Friday"
+   },
+   "day6": {
+      "message": "Saturday"
+   },
+   "defaults": {
+      "message": "Restore"
+   },
+   "defaultsTitle": {
+      "message": "Restore Defaults"
+   },
+   "domain": {
+      "message": "Domain Name"
+   },
+   "dsc100": {
+      "message": "Sites that host software that is covertly downloaded to a user's machine to collect information and monitor user activity, and sites that are infected with destructive or malicious software, specifically designed to damage, disrupt, attack or manipulate computer systems without the user's consent, such as virus or trojan horse. "
+   },
+   "dsc101": {
+      "message": "Counterfeit web pages that duplicate legitimate business web pages for the purpose of eliciting financial, personal or other private information from the users. "
+   },
+   "dsc102": {
+      "message": "Websites or webpages whose URLs are found in spam emails. These webpages often advertise sex sites, fraudulent wares, and other potentially offensive materials. "
+   },
+   "dsc200": {
+      "message": "Websites that feature information on illegal drug activities including: drug promotion, preparation, cultivation, trafficking, distribution, solicitation, etc. "
+   },
+   "dsc201": {
+      "message": "Websites that depict illicit activities surrounding the unauthorized modification or access to programs, computers, equipment and websites. "
+   },
+   "dsc202": {
+      "message": "Websites that feature information, methods, or instructions on fraudulent actions or unlawful conduct (non-violent) such as scams, counterfeiting, tax evasion, petty theft, blackmail, etc. "
+   },
+   "dsc203": {
+      "message": "Sites that promote the identification of racial groups, the denigration or subjection of groups, or the superiority of any group. "
+   },
+   "dsc204": {
+      "message": "This category includes sites that depict offensive material on brutality, death, cruelty, acts of abuse, mutilation, etc. "
+   },
+   "dsc205": {
+      "message": "Sites that feature radical militia groups or movements with aggressive anti-government convictions or beliefs. "
+   },
+   "dsc206": {
+      "message": "Websites that provide information or tools on how to bypass Internet access controls and browse the Web anonymously, includes anonymous proxy servers. "
+   },
+   "dsc207": {
+      "message": "Websites that provide, distribute or sell school essays, projects, or diplomas. "
+   },
+   "dsc208": {
+      "message": "Websites that have been verified by the Internet Watch Foundation to contain or distribute images of non-adult children that are depicted in a state of abuse. Information on the Internet Watch Foundation is available at http://www.iwf.org.uk/. "
+   },
+   "dsc300": {
+      "message": "Websites that provide information about or promote religions not specified in Traditional Religions or other unconventional, cultic, or folkloric beliefs and practices. Sites that promote or offer methods, means of instruction, or other resources to affect or influence real events through the use of spells, curses, magic powers, satanic or supernatural beings."
+   },
+   "dsc301": {
+      "message": "Websites pertaining to abortion data, information, legal issues, and organizations. "
+   },
+   "dsc302": {
+      "message": "Mature content websites (18+ years and over) that feature or promote sexuality, strip clubs, sex shops, etc. excluding sex education, without the intent to sexually arouse. "
+   },
+   "dsc303": {
+      "message": "This category caters to organizations that campaign or lobby for a cause by building public awareness, raising support, influencing public policy, etc. "
+   },
+   "dsc304": {
+      "message": "Sites that cater to gambling activities such as betting, lotteries, casinos, including gaming information, instruction, and statistics. "
+   },
+   "dsc305": {
+      "message": "Mature content websites (18+ years and over) that depict the human body in full or partial nudity without the intent to sexually arouse. "
+   },
+   "dsc306": {
+      "message": "Mature content websites (18+ years and over) which present or display sexual acts with the intent to sexually arouse and excite. "
+   },
+   "dsc307": {
+      "message": "Websites that allow individuals to make contact and communicate with each other over the Internet, usually with the objective of developing a personal, romantic, or sexual relationship. "
+   },
+   "dsc308": {
+      "message": "Websites that feature the legal promotion or sale of weapons such as hand guns, knives, rifles, explosives, etc. "
+   },
+   "dsc309": {
+      "message": "Sites that provide information about or promote the cultivation, preparation, or use of marijuana. "
+   },
+   "dsc310": {
+      "message": "Educational websites that provide information or discuss sex and sexuality, without utilizing pornographic materials. "
+   },
+   "dsc311": {
+      "message": "Websites which legally promote or sell alcohol products and accessories. "
+   },
+   "dsc312": {
+      "message": "Websites which legally promote or sell tobacco products and accessories. "
+   },
+   "dsc313": {
+      "message": "Websites that utilizes images of semi-nude models in lingerie, undergarments and swimwear for the purpose of selling or promoting such items. "
+   },
+   "dsc314": {
+      "message": "Web pages that feature sport hunting, war games, paintball facilities, etc. Includes all related clubs, organizations and groups. "
+   },
+   "dsc400": {
+      "message": "Sites whose primary function is to provide freeware and software downloads. Cell phone ringtones/images/games, computer software updates for free downloads are all included in this category. "
+   },
+   "dsc401": {
+      "message": "Websites that permit users to utilize Internet servers to store personal files or for sharing, such as with photos. "
+   },
+   "dsc402": {
+      "message": "Websites that allow the downloading of MP3 or other multimedia files. "
+   },
+   "dsc403": {
+      "message": "Websites that allow users to share files and data storage between each other. "
+   },
+   "dsc404": {
+      "message": "Websites that broadcast radio or TV communications over the Internet. "
+   },
+   "dsc405": {
+      "message": "Websites that enable telephone communications over the Internet. "
+   },
+   "dsc500": {
+      "message": "Financial Data and Services -- Sites that offer news and quotations on stocks, bonds, and other investment vehicles, investment advice, but not online trading. Includes banks, credit unions, credit cards, and insurance. Mortgage/insurance brokers apply here as opposed to Brokerage and Trading. "
+   },
+   "dsc501": {
+      "message": "Sites that support searching the Web, news groups, or indices/directories. Sites of search engines that provide info exclusively for shopping or comparing prices, however, fall in Shopping and Auction. "
+   },
+   "dsc502": {
+      "message": "Sites that cater to groups, clubs or organisations of individuals with similar interests, either professional, social, humanitarian or recreational in nature. Social and Affiliation Organizations: Sites sponsored by or that support or offer information about organizations devoted chiefly to socializing or common interests other than philanthropy or professional advancement.Not to be be confused with Advocacy Groups and Political Groups. "
+   },
+   "dsc503": {
+      "message": "Sites sponsored by or devoted to business firms, business associations, industry groups, or business in general. Information Technology companies are excluded in this category and fall in Information Technology. "
+   },
+   "dsc504": {
+      "message": "Sites that provide information about or free downloadable tools for computer security, but not ordinary Freeware and Software downloading. "
+   },
+   "dsc505": {
+      "message": "Government: Sites sponsored by branches, bureaus, or agencies of any level of government, except for the armed forces, including courts, police institutions, city-level government institutions. Legal Organizations: Sites that discuss or explain laws of various government entities. "
+   },
+   "dsc506": {
+      "message": "Information Technology peripherals and services, cell phone services, cable TV/Internet suppliers. "
+   },
+   "dsc507": {
+      "message": "Websites related to organized military and armed forces, excluding civil and extreme military organizations. "
+   },
+   "dsc508": {
+      "message": "Sites of organizations that provide hosting services, or top-level domain pages of Web communities. "
+   },
+   "dsc509": {
+      "message": "Sites that institute security measures such as authentication, passwords, registration, etc. "
+   },
+   "dsc510": {
+      "message": "Sites that mimic desktop applications such as word processing, spreadsheets, and slide-show presentations. "
+   },
+   "dsc600": {
+      "message": "Sites that provide advertising graphics or other ad content files, including ad servers (domain name often with ad. , such as ad.yahoo.com). If a site is mainly for online transactions, it is rated as Shopping and Auctions. Includes pay-to-surf and affiliated advertising programs. "
+   },
+   "dsc601": {
+      "message": "Sites that support active trading of securities and management of investments. Real estate broker does not apply here, and falls within Shopping and Auction. Sites that provide supplier and buyer info/ads do not apply here either since they do not provide trading activities. "
+   },
+   "dsc602": {
+      "message": "Sites that provide information about or promote electronic games, video games, computer games, role-playing games, or online games. Includes sweepstakes and giveaways. Sport games are not included in this category, but time consuming mathematic game sites that serve little education purpose are included in this category. "
+   },
+   "dsc603": {
+      "message": "Sites that allow users to utilize electronic mail services. "
+   },
+   "dsc604": {
+      "message": "Sites that provide information about or promote motion pictures, non-news radio and television, music and programming guides, books, humor, comics, movie theatres, galleries, artists or review on entertainment, and magazines. Includes book sites that have personal flavor or extra-material by authors to promote the books. "
+   },
+   "dsc605": {
+      "message": "Websites that cater to fine arts, cultural behaviors and backgrounds including conventions, artwork and paintings, music, languages, customs, etc. Also includes institutions such as museums, libraries and historic sites. Sites that promote historical, cultural heritage of certain area, but not purposely promoting travel. "
+   },
+   "dsc606": {
+      "message": "Educational Institutions: Sites sponsored by schools, other educational facilities and non-academic research institutions, and sites that relate to educational events and activities. Educational Materials: Sites that provide information about, sell, or provide curriculum materials. Sites that direct instruction, as well as academic journals and similar publications where scholars and professors submit academic/research articles. "
+   },
+   "dsc607": {
+      "message": "Sites that provide information or advice on personal health or medical services, procedures, or devices, but not drugs. Includes self-help groups. This category includes cosmetic surgery providers, children's hospitals, but not sites of medical care for pets, which fall in Society and Lifestyle. "
+   },
+   "dsc608": {
+      "message": "Sites that offer information about or support the seeking of employment or employees. Includes career agents and consulting services that provide job postings. "
+   },
+   "dsc609": {
+      "message": "Prescribed Medications: Sites that provide information about approved drugs and their medical use. Supplements and Unregulated Compounds: Sites that provide information about or promote the sale or use of chemicals not regulated by the FDA (such as naturally occurring compounds). This category includes sites of online shopping for medicine, as it is a sensitive category separated from regular shopping. "
+   },
+   "dsc610": {
+      "message": "Sites that offer current news and opinion, including those sponsored by newspapers, general-circulation magazines, or other media. This category includes TV and Radio sites, as long as they are not exclusively for entertainment purpose, but excludes academic journals. Alternative Journals: Online equivalents to supermarket tabloids and other fringe publications. "
+   },
+   "dsc611": {
+      "message": "Includes websites that aid in the coordination of heterosexual relationships and companionship. Includes legal and non-sexual sites related to on-line dating, personal ads, dating services, clubs, etc. "
+   },
+   "dsc612": {
+      "message": "Sites that are sponsored by or provide information about political parties and interest groups focused on elections or legislation. This is not to be confused with Government and Legal Organizations, and Advocacy Groups. "
+   },
+   "dsc613": {
+      "message": "Websites that provide general reference data in the form of libraries, dictionaries, thesauri, encyclopedias, maps, directories, standards, etc. "
+   },
+   "dsc614": {
+      "message": "Sites that provide information about or promote Buddhism, Bahai, Christianity, Christian Science, Hinduism, Islam, Judaism, Mormonism, Shinto, and Sikhism, as well as atheism. "
+   },
+   "dsc615": {
+      "message": "Websites that feature on-line promotion or sale of general goods and services such as electronics, flowers, jewelry, music, etc, excluding real estate. Also includes on-line auction services such as eBay, Amazon, Priceline. "
+   },
+   "dsc616": {
+      "message": "This category contains sites that deal with everyday life issues and preferences such as passive hobbies (gardening, stamp collecting, pets), journals, blogs, etc. "
+   },
+   "dsc617": {
+      "message": "Includes sites that pertain to recreational sports and active hobbies such as fishing, hunting, jogging, canoeing, archery, chess, as well as organized, professional and competitive sports. "
+   },
+   "dsc618": {
+      "message": "Websites in this category feature travel related resources such as accommodations, transportation (rail, airlines, cruise ships), agencies, resort locations, tourist attractions, advisories, etc. "
+   },
+   "dsc619": {
+      "message": "Websites that contain information on private use or sale of autos, boats, planes, motorcycles, etc., including parts and accessories. "
+   },
+   "dsc620": {
+      "message": "URLs that are generated dynamically by a Web server. "
+   },
+   "dsc621": {
+      "message": "This category houses URLs that cannot be definitively categorized due to lack of or ambiguous content. "
+   },
+   "dsc622": {
+      "message": "UFOs, fortune telling, horoscopes, fen shui, palm reading, tarot reading, and ghost stories. "
+   },
+   "dsc623": {
+      "message": "Sites that host Web chat services, or that support or provide information about chat via HTTP or IRC. "
+   },
+   "dsc624": {
+      "message": "Sites that allow users to communicate in real-time over the Internet. "
+   },
+   "dsc625": {
+      "message": "Sites for online personal and business clubs, discussion groups, message boards, and list servers; includes 'blogs' and 'mail magazines.' "
+   },
+   "dsc626": {
+      "message": "Sites for sending/viewing digital post cards. "
+   },
+   "dsc627": {
+      "message": "Websites developed for children age 12 and under. Includes educational games, tools, organizations and schools. Note that children's hospitals are rated as Health. "
+   },
+   "dsc628": {
+      "message": "Websites that promote the sale or renting of real estate properties. "
+   },
+   "dsc629": {
+      "message": "Websites related to restaurants and dining, includes locations, food reviews, recipes, catering services, etc. "
+   },
+   "dsc630": {
+      "message": "Private web pages that host personal information, opinions and ideas of the owners. "
+   },
+   "dsc631": {
+      "message": "Websites that host servers that distribute content for subscribing websites. Includes image and Web servers. "
+   },
+   "dsc632": {
+      "message": "Sites that simply are place holders of domains without meaningful content. "
+   },
+   "dsc633": {
+      "message": "Sites providing online banking, trading, health care, and others that contain personal privacy information. "
+   },
+   "dscDef": {
+      "message": "This will reset all settings to default."
+   },
+   "empty": {
+      "message": "Empty"
+   },
+   "enableAccessTime": {
+      "message": "Enable Time Control"
+   },
+   "enpass": {
+      "message": "Enable password protection"
+   },
+   "enterPass": {
+      "message": "Please enter your password"
+   },
+   "enterUrl": {
+      "message": "Enter url"
+   },
+   "everyday": {
+      "message": "Everyday"
+   },
+   "extpass": {
+      "message": "Enable password"
+   },
+   "filter": {
+      "message": "Filter Name"
+   },
+   "finish": {
+      "message": "Finish"
+   },
+   "from": {
+      "message": "Start Blocking"
+   },
+   "id1": {
+      "message": "Security Risk"
+   },
+   "id100": {
+      "message": "Malicious Websites"
+   },
+   "id101": {
+      "message": "Phishing"
+   },
+   "id102": {
+      "message": "Spam URLs"
+   },
+   "id2": {
+      "message": "Unethical"
+   },
+   "id200": {
+      "message": "Drug Abuse"
+   },
+   "id201": {
+      "message": "Hacking"
+   },
+   "id202": {
+      "message": "Illegal or Unethical"
+   },
+   "id203": {
+      "message": "Discrimination"
+   },
+   "id204": {
+      "message": "Explicit Violence"
+   },
+   "id205": {
+      "message": "Extremist Groups"
+   },
+   "id206": {
+      "message": "Proxy Avoidance"
+   },
+   "id207": {
+      "message": "Plagiarism"
+   },
+   "id208": {
+      "message": "Child Abuse"
+   },
+   "id3": {
+      "message": "Adult/Mature Content"
+   },
+   "id300": {
+      "message": "Alternative Beliefs"
+   },
+   "id301": {
+      "message": "Abortion"
+   },
+   "id302": {
+      "message": "Other Adult Materials"
+   },
+   "id303": {
+      "message": "Advocacy Organizations"
+   },
+   "id304": {
+      "message": "Gambling"
+   },
+   "id305": {
+      "message": "Nudity and Risque"
+   },
+   "id306": {
+      "message": "Pornography"
+   },
+   "id307": {
+      "message": "Dating"
+   },
+   "id308": {
+      "message": "Weapons (Sales)"
+   },
+   "id309": {
+      "message": "Marijuana"
+   },
+   "id310": {
+      "message": "Sex Education"
+   },
+   "id311": {
+      "message": "Alcohol"
+   },
+   "id312": {
+      "message": "Tobacco"
+   },
+   "id313": {
+      "message": "Lingerie and Swimsuit"
+   },
+   "id314": {
+      "message": "Sports Hunting and War Games"
+   },
+   "id4": {
+      "message": "Bandwidth Consuming"
+   },
+   "id400": {
+      "message": "Freeware and Software Downloads"
+   },
+   "id401": {
+      "message": "File Sharing and Storage"
+   },
+   "id402": {
+      "message": "Streaming Media and Download"
+   },
+   "id403": {
+      "message": "Peer-to-peer File Sharing"
+   },
+   "id404": {
+      "message": "Internet Radio and TV"
+   },
+   "id405": {
+      "message": "Internet Telephony"
+   },
+   "id5": {
+      "message": "Business"
+   },
+   "id500": {
+      "message": "Finance and Banking"
+   },
+   "id501": {
+      "message": "Search Engines and Portals"
+   },
+   "id502": {
+      "message": "General Organizations"
+   },
+   "id503": {
+      "message": "Business"
+   },
+   "id504": {
+      "message": "Information and Computer Security"
+   },
+   "id505": {
+      "message": "Government and Legal Organizations"
+   },
+   "id506": {
+      "message": "Information Technology"
+   },
+   "id507": {
+      "message": "Armed Forces"
+   },
+   "id508": {
+      "message": "Web Hosting"
+   },
+   "id509": {
+      "message": "Secure Websites"
+   },
+   "id510": {
+      "message": "Web-based Applications"
+   },
+   "id6": {
+      "message": "Personal"
+   },
+   "id600": {
+      "message": "Advertising"
+   },
+   "id601": {
+      "message": "Brokerage and Trading"
+   },
+   "id602": {
+      "message": "Games"
+   },
+   "id603": {
+      "message": "Web-based Email"
+   },
+   "id604": {
+      "message": "Entertainment"
+   },
+   "id605": {
+      "message": "Arts and Culture"
+   },
+   "id606": {
+      "message": "Education"
+   },
+   "id607": {
+      "message": "Health and Wellness"
+   },
+   "id608": {
+      "message": "Job Search"
+   },
+   "id609": {
+      "message": "Medicine"
+   },
+   "id610": {
+      "message": "News and Media"
+   },
+   "id611": {
+      "message": "Social Networking"
+   },
+   "id612": {
+      "message": "Political Organizations"
+   },
+   "id613": {
+      "message": "Reference"
+   },
+   "id614": {
+      "message": "Global Religion"
+   },
+   "id615": {
+      "message": "Shopping and Auction"
+   },
+   "id616": {
+      "message": "Society and Lifestyles"
+   },
+   "id617": {
+      "message": "Sports"
+   },
+   "id618": {
+      "message": "Travel"
+   },
+   "id619": {
+      "message": "Personal Vehicles"
+   },
+   "id620": {
+      "message": "Dynamic Content"
+   },
+   "id621": {
+      "message": "Meaningless Content"
+   },
+   "id622": {
+      "message": "Folklore"
+   },
+   "id623": {
+      "message": "Web Chat"
+   },
+   "id624": {
+      "message": "Instant Messaging"
+   },
+   "id625": {
+      "message": "Newsgroups and Message Boards"
+   },
+   "id626": {
+      "message": "Digital Postcards"
+   },
+   "id627": {
+      "message": "Child Education"
+   },
+   "id628": {
+      "message": "Real Estate"
+   },
+   "id629": {
+      "message": "Restaurant and Dining"
+   },
+   "id630": {
+      "message": "Personal Websites and Blogs"
+   },
+   "id631": {
+      "message": "Content Servers"
+   },
+   "id632": {
+      "message": "Domain Parking"
+   },
+   "id633": {
+      "message": "Personal Privacy"
+   },
+   "id700": {
+      "message": "Unrated"
+   },
+   "man1": {
+      "message": "Blocksi Manager enables large deployments and easy management of Blocksi extension. Contact us at "
+   },
+   "man2": {
+      "message": "for more information."
+   },
+   "man3": {
+      "message": "Key Features:"
+   },
+   "man4": {
+      "message": "Easy management for Chromebooks and Google Chrome Browser(Chromium, Opera)"
+   },
+   "man5": {
+      "message": "Integration with Chromebook management console"
+   },
+   "man6": {
+      "message": "Google apps eco-system"
+   },
+   "man7": {
+      "message": "Analytics"
+   },
+   "man8": {
+      "message": "Prefect for Schools and businesses"
+   },
+   "mandsc": {
+      "message": "Blocksi Manager is application for central storage and  management  of the Blocksi extension settings."
+   },
+   "manreg": {
+      "message": "Blocksi Manager  Registration"
+   },
+   "menu0": {
+      "message": "Web Filter"
+   },
+   "menu1": {
+      "message": "URL Filter"
+   },
+   "menu2": {
+      "message": "Content Filter"
+   },
+   "menu3": {
+      "message": "Youtube Category Filter"
+   },
+   "menu4": {
+      "message": "Access Time"
+   },
+   "menu5": {
+      "message": "Options"
+   },
+   "menu6": {
+      "message": "Youtube Channel Filter"
+   },
+   "menu7": {
+      "message": "Youtube Keyword Filter"
+   },
+   "minor": {
+      "message": "Children"
+   },
+   "moreSett": {
+      "message": "Advanced settings"
+   },
+   "next": {
+      "message": "Next"
+   },
+   "ok": {
+      "message": "Ok"
+   },
+   "passDsc": {
+      "message": "Here you can enable or disable password protection that controls access to the Blocksi extenstion settings."
+   },
+   "password": {
+      "message": "Password"
+   },
+   "presets": {
+      "message": "Presets"
+   },
+   "presetsDsc": {
+      "message": "Two filter preset settings are available that match recommended internet security settings for adults or children."
+   },
+   "prev": {
+      "message": "Previous"
+   },
+   "qsMan": {
+      "message": "Blocksi Manager is an application for centralized storage and management of the Blocksi Extension settings. When Blocksi Extension needs to be installed on more PCs it provides simple and efficient centralized management tool."
+   },
+   "qsPass": {
+      "message": "It's recommended to protect extension with a password, so that only parents or administrator can change settings."
+   },
+   "qsdsc": {
+      "message": "This quick wizard will help You to quicky configure Blocksi. You can skip this any time by clicking Skip Wizard and go straight to the full Blocksi options page."
+   },
+   "qstitle": {
+      "message": "Welcome to Blocksi for "
+   },
+   "quicksetup": {
+      "message": "Quick setup"
+   },
+   "regexDsc": {
+      "message": "You can control web content by blocking access to web pages containing specific words or patterns.You can also add words, phrases, and"
+   },
+   "regexDsc2": {
+      "message": " to match content on web pages."
+   },
+   "remove": {
+      "message": "Remove"
+   },
+   "safeSearch": {
+      "message": "Block adult content when using search engines"
+   },
+   "safeSearchTitle": {
+      "message": "Safe Search (Google, Yahoo, Bing)"
+   },
+   "save": {
+      "message": "Save"
+   },
+   "save2": {
+      "message": "Save settings"
+   },
+   "signIn": {
+      "message": "Sign in"
+   },
+   "skip": {
+      "message": "Skip"
+   },
+   "skipMan": {
+      "message": "No, I don't want to use Blocksi Manager"
+   },
+   "skipPass": {
+      "message": "Don't use password to protect extension"
+   },
+   "skipW": {
+      "message": "Skip Wizard"
+   },
+   "till": {
+      "message": "Stop Blocking"
+   },
+   "time": {
+      "message": "Time"
+   },
+   "urlDupli": {
+      "message": "This filter is already on list!"
+   },
+   "urlcheckDsc": {
+      "message": "Here you can find to which category a website belongs"
+   },
+   "urlcheckTitle": {
+      "message": "Helper"
+   },
+   "user": {
+      "message": "User"
+   },
+   "username": {
+      "message": "Username"
+   },
+   "valEmpty": {
+      "message": "Field can't be empty"
+   },
+   "vpass": {
+      "message": "Verify password"
+   },
+   "warning": {
+      "message": "Warning"
+   },
+   "webfilterDsc": {
+      "message": "Select which category you want to block or allow. There is also a warning action in case you just want to inform user about possible unwanted content."
+   },
+   "weekdays": {
+      "message": "Weekdays"
+   },
+   "weekends": {
+      "message": "Weekends"
+   },
+   "wrongPass": {
+      "message": "Wrong password"
+   },
+   "yt_1": {
+      "message": "Film & Animation"
+   },
+   "yt_10": {
+      "message": "Music"
+   },
+   "yt_15": {
+      "message": "Pets & Animals"
+   },
+   "yt_17": {
+      "message": "Sports"
+   },
+   "yt_18": {
+      "message": "Short Movies"
+   },
+   "yt_19": {
+      "message": "Travel & Events"
+   },
+   "yt_2": {
+      "message": "Autos & Vehicles"
+   },
+   "yt_20": {
+      "message": "Gaming"
+   },
+   "yt_21": {
+      "message": "Videoblogging"
+   },
+   "yt_22": {
+      "message": "People & Blogs"
+   },
+   "yt_23": {
+      "message": "Comedy"
+   },
+   "yt_24": {
+      "message": "Entertainment"
+   },
+   "yt_25": {
+      "message": "News & Politics"
+   },
+   "yt_26": {
+      "message": "Howto & Style"
+   },
+   "yt_27": {
+      "message": "Education"
+   },
+   "yt_28": {
+      "message": "Science & Technology"
+   },
+   "yt_29": {
+      "message": "Nonprofits & Activism"
+   },
+   "yt_30": {
+      "message": "Movies"
+   },
+   "yt_31": {
+      "message": "Anime/Animation"
+   },
+   "yt_32": {
+      "message": "Action/Adventure"
+   },
+   "yt_33": {
+      "message": "Classics"
+   },
+   "yt_34": {
+      "message": "Comedy"
+   },
+   "yt_35": {
+      "message": "Documentary"
+   },
+   "yt_36": {
+      "message": "Drama"
+   },
+   "yt_37": {
+      "message": "Family"
+   },
+   "yt_38": {
+      "message": "Foreign"
+   },
+   "yt_39": {
+      "message": "Horror"
+   },
+   "yt_40": {
+      "message": "Sci-Fi/Fantasy"
+   },
+   "yt_41": {
+      "message": "Thriller"
+   },
+   "yt_42": {
+      "message": "Shorts"
+   },
+   "yt_43": {
+      "message": "Shows"
+   },
+   "yt_44": {
+      "message": "Trailers"
+   },
+   "ytchannelDsc": {
+      "message": "You can allow or block access to specific Youtube channels by adding them to the Youtube Channel filter list"
+   },
+   "ytkeyword": {
+      "message": "Youtube Keyword"
+   },
+   "ytkeywordDsc": {
+      "message": "You can block access to Youtube videos containing specific words or patterns"
+   },
+   "ytlistDsc": {
+      "message": "You can control what Youtube video category is allowed."
+   }
+}

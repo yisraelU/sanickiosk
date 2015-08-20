@@ -12,7 +12,6 @@ shh="/dev/null"
 # Import variables
 . ~/sanickiosk/config/browser.cfg
 
-# Get SanicKiosk extension app id 
 str=`cat ~/.config/google-chrome/Default/Preferences` # Read file as string
 IFS=’\"’ read -ra blocks <<< "$str" echo ${blocks[1]} # Convert string to array
 

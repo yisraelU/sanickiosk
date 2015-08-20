@@ -1,7 +1,7 @@
 window.config = {
    "model_": "AppConfig",
    "id": 1,
-   "appName": "Sanickiosk",
+   "appName": "SanicKiosk",
    "homepage": "http://sanickiosk.org",
    "enableLogoutBttn": true,
    "sessionDataTimeoutTime": 5,
