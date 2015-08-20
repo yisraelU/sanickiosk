@@ -1,16 +1,19 @@
 #!/bin/bash
 
+# Import system info
+. sanickiosk/config/system.cfg
+
 # Import variables
-. /home/sanickiosk/sanickiosk/config/screensaver.cfg
-. /home/sanickiosk/sanickiosk/config/browser.cfg
+. sanickiosk/config/screensaver.cfg
+. sanickiosk/config/browser.cfg
 
 # Uncomment to run touchscreen calibration on next boot
 #xterm xinput_calibrator
 
 # Disable right-click
-	if [ $nocontextmenu != "False" ]
+if [ $nocontextmenu != "False" ]
 	then xmodmap -e "pointer = 1 2 99"
-	fi
+fi
 
 # Autorun screensaver on login
 if [ $xscreensaver_enable = "True" ]
@@ -19,15 +22,15 @@ then
 	rm .xscreensaver-getimage.cache
 
 	# Write latest screensaver switches
-	bash /home/sanickiosk/sanickiosk/scripts/set_glslideshow_switches.sh
+	bash sanickiosk/scripts/set_glslideshow_switches.sh
 
 	# Read latest screensaver switches
-	screensaver_switches=`cat /home/sanickiosk/sanickiosk/config/glslideshow_switches.cfg`
+	screensaver_switches=`cat sanickiosk/config/glslideshow_switches.cfg`
 
 	# Set screensaver timeout
-	sed -i "/timeout:/c\timeout:	$xscreensaver_idle" /home/sanickiosk/.xscreensaver
+	sed -i "/timeout:/c\timeout:	$xscreensaver_idle" .xscreensaver
 	# Set glslideshow switches
-	sed -i "/programs:/c\programs:	glslideshow -root $screensaver_switches" /home/sanickiosk/.xscreensaver
+	sed -i "/programs:/c\programs:	glslideshow -root $screensaver_switches" .xscreensaver
 	xscreensaver -nosplash &
 else
 	xset s off # Disable screensaver
@@ -35,29 +38,13 @@ else
 	xset s noblank # Do not blank the screen
 fi
 
-# Get screen resolution
-#res=$(xrandr -q | awk -F'"'"'current'"'"' -F'"'"','"'"' '"'"'NR==1 {gsub("( |current)","");print $2}'"'"')
-
-# Nuke it from orbit
-#rm -rf /home/sanickiosk/sanickiosk/.opera/cache
-#mkdir /home/sanickiosk/sanickiosk/.opera/cache
-
-#rm /home/sanickiosk/sanickiosk/.opera/global_history.dat
-#rm /home/sanickiosk/sanickiosk/.opera/bookmarks.adr
-#rm /home/sanickiosk/sanickiosk/.opera/download.dat
-
-# Write latest operaprefs.ini
-#sh /home/sanickiosk/sanickiosk/.sanickiosk/operaprefs.sh
-
-# Avoid Opera Welcome screen
-#touch -t 201401010001 /home/sanickiosk/sanickiosk/.opera/operaprefs.ini
-
 # Write latest toolbar
-#sh /home/sanickiosk/sanickiosk/.sanickiosk/toolbar/sanickiosk_toolbar_builder.sh
 
 # Restore keyboard shortcuts
 #mkdir /home/sanickiosk/sanickiosk/.opera/keyboard
 #cp /home/sanickiosk/sanickiosk/.sanickiosk_keyboard.ini /home/sanickiosk/sanickiosk/.opera/keyboard/
+
+# Set home url
 
 # Write latest browser switches
 #bash /home/sanickiosk/sanickiosk/scripts/set_opera_switches.sh
@@ -66,20 +53,14 @@ fi
 #browser_switches=`cat /home/sanickiosk/sanickiosk/config/opera_switches.cfg`
 
 # Start browser killer
-sh /home/sanickiosk/sanickiosk/scripts/browser_killer.sh &
+#sh /home/sanickiosk/sanickiosk/scripts/browser_killer.sh &
 
 # Start window manager
 matchbox-window-manager -use_titlebar no &
 
-# Restore Opera Speed Dial
-#cp /home/sanickiosk/sanickiosk/.opera/speeddial.sav /home/sanickiosk/sanickiosk/.opera/speeddial.ini
-
-# Delete Opera Bookmarks
-#rm /home/sanickiosk/sanickiosk/.opera/bookmarks.adr
-
 # Relaunch browser if closed
 while true; do
-	chromium-browser $browser_switches $home_url
+	chromium-browser --load-extension=sanickiosk/chrome_extensions/sanickiosk --load-extension=sanickiosk/chrome_extensions/virtual_keyboard $browser_switches $home_url
 	#firefox $browser_switches $home_url
 	sleep 5s
 done
