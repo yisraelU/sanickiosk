@@ -64,12 +64,12 @@ browser_extensions="sanickiosk/chrome_extensions/sanickiosk/0.1,sanickiosk/chrom
 # " --disk-cache-dir=$CHROMIUM_TEMP/cache/ --user-data-dir=$CHROMIUM_TEMP/user_data/ --start-maximized"
 
 # Need to minimize this
-chromium-browser --load-extension=$browser_extensions --kiosk http://sanickiosk.org
+chromium-browser --load-extension=$browser_extensions # --kiosk http://sanickiosk.org
 
 #sleep 5s
 
 # Get SanicKiosk extension app id
-str=`cat ~/.config/google-chrome/Default/Preferences` # Read file as string
+str=`cat .config/google-chrome/Default/Preferences` # Read file as string
 IFS=’\"’ read -ra blocks <<< "$str" echo ${blocks[1]} # Convert string to array
 # As function in case needed again
 find_app_id () {
