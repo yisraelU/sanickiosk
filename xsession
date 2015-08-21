@@ -64,9 +64,8 @@ browser_extensions="sanickiosk/chrome_extensions/sanickiosk/0.1,sanickiosk/chrom
 
 # Relaunch browser if closed
 while true; do
-	chromium-browser --load-extension=sanickiosk/chrome_extensions/sanickiosk/0.1 &
-	sleep 5s
-	killall chromium-browser
+	xinit chromium-browser --load-extension=sanickiosk/chrome_extensions/sanickiosk/0.1 -- :10
+	#sleep 10s
 	chromium-browser --app-id=$SanicKiosk_app_id # Start Chrome so SanicKiosk receives an app id
 	# Get SanicKiosk extension app id
 	str=`cat ~/.config/google-chrome/Default/Preferences` # Read file as string
