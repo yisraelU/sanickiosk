@@ -64,7 +64,7 @@ browser_extensions="sanickiosk/chrome_extensions/sanickiosk/0.1,sanickiosk/chrom
 # " --disk-cache-dir=$CHROMIUM_TEMP/cache/ --user-data-dir=$CHROMIUM_TEMP/user_data/ --start-maximized"
 
 # Need to minimize this
-chromium-browser --load-extension=$browser_extensions # --kiosk http://sanickiosk.org
+chromium-browser --load-extension=$browser_extensions & # --kiosk http://sanickiosk.org
 
 #sleep 5s
 
