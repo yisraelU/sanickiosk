@@ -1,0 +1,23 @@
+{
+   "background": {
+      "page": "background.html"
+   },
+   "browser_action": {
+      "default_icon": "as19.png",
+      "default_title": "Set App AutoStart Options"
+   },
+   "description": "Automatically launch applications on startup.  Great for setting up app-specific user profiles",
+   "icons": {
+      "128": "as128.png",
+      "16": "as16.png",
+      "32": "as32.png",
+      "48": "as48.png"
+   },
+   "key": "MIIBIjANBgkqhkiG9w0BAQEFAAOCAQ8AMIIBCgKCAQEA4Cqlibw7drKR7v4TsBr5er78SV1D1vUCbN/2U9JQr80NAivAJrnbVeueFKswjsWhKWOhWnsjoblIAtK2wW4yZ1s36l5OCCkh2gXQz8TLUbLwxr4uRumYsva3C0qxVhUTybBhzmL9VnuMdsFJABvs/XepmVW+23uP0Zq/lF1mxq5mBYFSC0GqhCJi9PLYokbK/3co0sfhLVRzZ5f3/X7LZARQmTfU960ZpzrOHcYv1JSRjBhgvpoljck8CD87l0r6WLTWR3WSrTeI72TV4U4B7TG+B0Vq6bpXpjQjVQrsBcLR5YJqwh+DDuLrMQ/PJO6YMQQPpBlvd9002w9Tl9osIwIDAQAB",
+   "manifest_version": 2,
+   "name": "App AutoStart",
+   "options_page": "options.html",
+   "permissions": [ "tabs", "management", "http://*/*" ],
+   "update_url": "http://clients2.google.com/service/update2/crx",
+   "version": "1.12.14.2"
+}

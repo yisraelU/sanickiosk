@@ -1,0 +1,35 @@
+body {
+    font-family:arial;
+    text-align:center;
+}
+
+.options-title {
+    border-bottom-style: solid;
+    border-bottom-color: gray;
+    border-width: 1px;
+    padding-bottom: 10px;
+    margin-top: 15px;
+}
+
+.option-tip {
+    width:500px;
+    border-radius:5px;
+    background-color:#CCFFCC;
+    border-width:1px;
+    border-style:solid;
+    display:inline-block;
+    padding:4px;
+    margin:5px 7px 7px 7px;
+}
+#app-table {
+    margin:30px auto 30px auto;
+}
+.col-auto-start {
+    text-align:center;
+}
+.col-open-as {
+    text-align:center;
+}
+thead {
+    font-weight:bold;
+}
