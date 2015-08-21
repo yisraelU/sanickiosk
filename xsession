@@ -84,11 +84,11 @@ while true; do
 			#sanickiosk/chrome_extensions/app_autostart/1.12.14.2_0,\
 			sanickiosk/chrome_extensions/blocksi/1.0.101_0,\
 			sanickiosk/chrome_extensions/virtual_keyboard/1.10.7_0\
-		--disable \
-	  --disable-translate \
-	  --disable-infobars \
-	  --disable-suggestions-service \
-	  --disable-save-password-bubble \
+#		--disable \
+#	  --disable-translate \
+#	  --disable-infobars \
+#	  --disable-suggestions-service \
+#	  --disable-save-password-bubble \
 #	  --disk-cache-dir=$CHROMIUM_TEMP/cache/ \
 #	  --user-data-dir=$CHROMIUM_TEMP/user_data/ \
 #	  --start-maximized \
