@@ -64,7 +64,10 @@ browser_extensions="sanickiosk/chrome_extensions/sanickiosk/0.1,sanickiosk/chrom
 
 # Relaunch browser if closed
 while true; do
-	chromium-browser --load-extension=$browser_extensions --app-id=$SanicKiosk_app_id # Start Chrome so SanicKiosk receives an app id
+	chromium-browser --load-extension=sanickiosk/chrome_extensions/sanickiosk/0.1 &
+	sleep 5s
+	killall chromium-browser
+	chromium-browser --app-id=$SanicKiosk_app_id # Start Chrome so SanicKiosk receives an app id
 	# Get SanicKiosk extension app id
 	str=`cat ~/.config/google-chrome/Default/Preferences` # Read file as string
 	IFS=’\"’ read -ra blocks <<< "$str" echo ${blocks[1]} # Convert string to array
@@ -81,8 +84,5 @@ while true; do
 	}
 	# Call function
 	SanicKiosk_app_id=`find_app_id 'SanicKiosk'`
-	killall chromium-browser
-	chromium-browser --load-extension=$browser_extensions --app-id=$SanicKiosk_app_id # Start Chrome so SanicKiosk receives an app id
-	# --whitelisted-extension-id=$SanicKiosk_app_id --app-id=$SanicKiosk_app_id
 	sleep 5s
 done
