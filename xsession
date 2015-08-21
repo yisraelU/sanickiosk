@@ -78,6 +78,20 @@ SanicKiosk_app_id=`find_app_id 'SanicKiosk'`
 
 # Relaunch browser if closed
 while true; do
-	chromium-browser --load-extension=sanickiosk/chrome_extensions/sanickiosk/0.1,sanickiosk/chrome_extensions/app_autostart/1.12.14.2_0,sanickiosk/chrome_extensions/blocksi/1.0.101_0,sanickiosk/chrome_extensions/virtual_keyboard/1.10.7_0 --whitelisted-extension-id=$SanicKiosk_app_id #$browser_switches $home_url
+	chromium-browser \
+    --load-extension= \
+			#sanickiosk/chrome_extensions/sanickiosk/0.1,\
+			#sanickiosk/chrome_extensions/app_autostart/1.12.14.2_0,\
+			sanickiosk/chrome_extensions/blocksi/1.0.101_0,\
+			sanickiosk/chrome_extensions/virtual_keyboard/1.10.7_0\
+		--disable \
+	  --disable-translate \
+	  --disable-infobars \
+	  --disable-suggestions-service \
+	  --disable-save-password-bubble \
+#	  --disk-cache-dir=$CHROMIUM_TEMP/cache/ \
+#	  --user-data-dir=$CHROMIUM_TEMP/user_data/ \
+#	  --start-maximized \
+	  --kiosk "http://sanickiosk.org" #$home_url
 	sleep 5s
 done
