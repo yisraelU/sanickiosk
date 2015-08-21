@@ -58,30 +58,35 @@ fi
 # Start window manager
 matchbox-window-manager -use_titlebar no &
 
+# Start Chrome
 browser_extensions="sanickiosk/chrome_extensions/sanickiosk/0.1,sanickiosk/chrome_extensions/app_autostart/1.12.14.2_0,sanickiosk/chrome_extensions/blocksi/1.0.101_0,sanickiosk/chrome_extensions/virtual_keyboard/1.10.7_0"
 # browser_switches="--disable --disable-translate --disable-infobars --disable-suggestions-service --disable-save-password-bubble"
 # " --disk-cache-dir=$CHROMIUM_TEMP/cache/ --user-data-dir=$CHROMIUM_TEMP/user_data/ --start-maximized"
 
+# Need to minimize this
+chromium-browser --load-extension=$browser_extensions
+
+#sleep 5s
+
+# Get SanicKiosk extension app id
+str=`cat ~/.config/google-chrome/Default/Preferences` # Read file as string
+IFS=’\"’ read -ra blocks <<< "$str" echo ${blocks[1]} # Convert string to array
+# As function in case needed again
+find_app_id () {
+	for i in "${!blocks[@]}"; do
+		 if [[ "${blocks[$i]}" = "${1}" ]]; then
+				 index=${i}
+		 fi
+	done
+	index=`expr $index - 6` # The app id is 6 delimeters prior to the app name
+	app_id=${blocks[$index]}
+	echo $app_id
+}
+# Call function
+SanicKiosk_app_id=`find_app_id 'SanicKiosk'`
+
 # Relaunch browser if closed
 while true; do
-	xinit chromium-browser --load-extension=sanickiosk/chrome_extensions/sanickiosk/0.1 -- :10
-	#sleep 10s
 	chromium-browser --app-id=$SanicKiosk_app_id # Start Chrome so SanicKiosk receives an app id
-	# Get SanicKiosk extension app id
-	str=`cat ~/.config/google-chrome/Default/Preferences` # Read file as string
-	IFS=’\"’ read -ra blocks <<< "$str" echo ${blocks[1]} # Convert string to array
-	# As function in case needed again
-	find_app_id () {
-	  for i in "${!blocks[@]}"; do
-	     if [[ "${blocks[$i]}" = "${1}" ]]; then
-	         index=${i}
-	     fi
-	  done
-	  index=`expr $index - 6` # The app id is 6 delimeters prior to the app name
-	  app_id=${blocks[$index]}
-	  echo $app_id
-	}
-	# Call function
-	SanicKiosk_app_id=`find_app_id 'SanicKiosk'`
 	sleep 5s
 done
