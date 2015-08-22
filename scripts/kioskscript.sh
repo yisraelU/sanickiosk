@@ -43,6 +43,8 @@ shh="/dev/null"
 # Make empty directories
 mkdir sanickiosk/screensavers >> $shh 2>> $log_it
 
+# Get operating system information
+. /etc/os-release
 echo -e "${red}Installing Sanickiosk on $NAME $VERSION.${nc}\n"
 
 echo -e "${red}Performing operating system updates ${yellow}(this may take a while)${red}...${nc}"
@@ -98,6 +100,7 @@ echo -e "${red}Configuring the splash screen ${yellow}(FrameBuffer Image viewer)
 ln -s sanickiosk/splash/aaa /etc/init.d/aaa >> $shh 2>> $log_it
 ln -s /usr/lib/insserv/insserv /sbin/insserv >> $shh 2>> $log_it
 insserv /etc/init.d/aaa >> $shh 2>> $log_it
+echo -e "${green}Done!${nc}"
 
 echo -e "${red}Configuring the screensaver ${yellow}(XScreenSaver)${red}...${nc}"
 # Link .xscreensaver
