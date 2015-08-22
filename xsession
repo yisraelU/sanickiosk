@@ -7,6 +7,9 @@
 . sanickiosk/config/screensaver.cfg
 . sanickiosk/config/browser.cfg
 
+# Set correct user and group permissions for home directory
+chown -R $UID:$UID $HOME >> $shh 2>> $log_it
+
 # Uncomment to run touchscreen calibration on next boot
 #xterm xinput_calibrator
 

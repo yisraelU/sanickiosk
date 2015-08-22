@@ -110,7 +110,7 @@ echo -e "${red}Setting up the SanicKiosk scripts...${nc}"
 # Link .xsession
 ln -s sanickiosk/xsession .xsession >> $shh 2>> $log_it
 # Set correct user and group permissions for home directory
-chown -R $user:$user $home_dir >> $shh 2>> $log_it
+chown -R $UID:$UID $HOME >> $shh 2>> $log_it
 # Unnecessarily making sure all scripts to exexutable
 find sanickiosk/scripts -type f -exec chmod +x {} \; >> $shh 2>> $log_it
 echo -e "${green}Done!${nc}"
@@ -125,11 +125,11 @@ ln -s sanickiosk/ajenti_plugins/sanickiosk_screensaver /var/lib/ajenti/plugins/s
 echo -e "${green}Done!${nc}"
 
 echo -e "${red}Enabling audio...${nc}"
-adduser $user audio >> $shh 2>> $log_it
+adduser $UID audio >> $shh 2>> $log_it
 echo -e "${green}Done!${nc}"
 
 echo -e "${red}Locking down the SanicKiosk user...${nc}"
-#deluser $user sudo
+#deluser $UID sudo
 echo -e "${green}Done!${nc}\n"
 
 echo -e "${red}Installation log saved to ${yellow}sanickiosk/logs/kioskscript.log${red}.${nc}"
