@@ -47,6 +47,9 @@ mkdir sanickiosk/screensavers >> $shh 2>> $log_it
 . /etc/os-release
 . /etc/lsb-release
 
+# Get user information
+user=`who am i | awk '{print $1}'`
+
 echo -e "${red}Installing Sanickiosk on $NAME $VERSION.${nc}\n"
 
 echo -e "${red}Performing operating system updates ${yellow}(this may take a while)${red}...${nc}"
@@ -99,7 +102,7 @@ echo -e "${green}Done!${nc}"
 
 echo -e "${red}Configuring the splash screen ${yellow}(FrameBuffer Image viewer)${red}...${nc}"
 # Link aaa_splashscreen
-ln -s sanickiosk/splash/aaa_splashscreen /etc/init.d/aaa_splashscreen >> $shh 2>> $log_it
+cp sanickiosk/splash/aaa_splashscreen /etc/init.d/aaa_splashscreen >> $shh 2>> $log_it
 ln -s /usr/lib/insserv/insserv /sbin/insserv >> $shh 2>> $log_it
 insserv /etc/init.d/aaa_splashscreen >> $shh 2>> $log_it
 echo -e "${green}Done!${nc}"
@@ -119,7 +122,7 @@ echo -e "${red}Setting up the SanicKiosk scripts...${nc}"
 # Link .xsession
 ln -s sanickiosk/xsession .xsession >> $shh 2>> $log_it
 # Set correct user and group permissions for home directory
-chown -R $UID:$UID $HOME >> $shh 2>> $log_it
+chown -R $user:$user $HOME >> $shh 2>> $log_it
 # Unnecessarily making sure all scripts to exexutable
 find sanickiosk/scripts -type f -exec chmod +x {} \; >> $shh 2>> $log_it
 echo -e "${green}Done!${nc}"
@@ -134,11 +137,11 @@ ln -s sanickiosk/ajenti_plugins/sanickiosk_screensaver /var/lib/ajenti/plugins/s
 echo -e "${green}Done!${nc}"
 
 echo -e "${red}Enabling audio...${nc}"
-adduser $UID audio >> $shh 2>> $log_it
+adduser $user audio >> $shh 2>> $log_it
 echo -e "${green}Done!${nc}"
 
 echo -e "${red}Locking down the SanicKiosk user...${nc}"
-#deluser $UID sudo
+#deluser $user sudo
 echo -e "${green}Done!${nc}\n"
 
 echo -e "${red}Installation log saved to ${yellow}sanickiosk/logs/kioskscript.log${red}.${nc}"
