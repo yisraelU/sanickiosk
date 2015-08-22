@@ -95,7 +95,8 @@ echo -e "${green}Done!${nc}"
 echo -e "${red}Configuring the splash screen ${yellow}(FrameBuffer Image viewer)${red}...${nc}"
 # Link aaa
 ln -s sanickiosk/splash/aaa /etc/init.d/aaa >> $shh 2>> $log_it
-insserv /etc/init.d/aaa
+ln -s /usr/lib/insserv/insserv /sbin/insserv >> $shh 2>> $log_it
+insserv /etc/init.d/aaa >> $shh 2>> $log_it
 
 echo -e "${red}Configuring the screensaver ${yellow}(XScreenSaver)${red}...${nc}"
 # Link .xscreensaver
