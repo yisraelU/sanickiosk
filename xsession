@@ -61,9 +61,8 @@ matchbox-window-manager -use_titlebar no &
 # Look for latest SanicKiosk Chrome extension
 #sanickiosk_extension="sanickiosk/chrome_extension/sanickiosk/0.1"
 array=(sanickiosk/chrome_extension/sanickiosk/*)
-for dir in "${array[@]}"; do
 IFS=$'\n'
-sanickiosk_extension=`${array[*]}" | sort -nr | head -n1`
+sanickiosk_extension=${array[*]}" | sort -nr | head -n1
 
 xterm
 
