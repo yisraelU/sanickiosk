@@ -1,0 +1,13 @@
+[Plymouth Theme]
+
+Name=SanicKiosk
+
+Description=Wallpaper only
+
+ModuleName=script
+
+[script]
+
+ImageDir=/lib/plymouth/themes/sanickiosk
+
+ScriptFile=/lib/plymouth/themes/sanickiosk/sanickiosk.script

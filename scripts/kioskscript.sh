@@ -85,7 +85,6 @@ xorg nodm matchbox-window-manager # GUI
   unclutter # Hide cursor
   wpasupplicant # Secure wireless support
   alsa # Audio
-  fbi # Splash screen
 )
 apt-get -qy install --no-install-recommends ${packagelist[@]} >> $shh 2>> $log_it
 echo -e "${green}Done!${nc}"
@@ -101,10 +100,10 @@ sed -i -e 's/NODM_USER=root/NODM_USER=sanickiosk/g' /etc/default/nodm >> $shh 2>
 echo -e "${green}Done!${nc}"
 
 echo -e "${red}Configuring the splash screen ${yellow}(FrameBuffer Image viewer)${red}...${nc}"
-# Link aaa_splashscreen
-cp sanickiosk/splash/aaa_splashscreen /etc/init.d/aaa_splashscreen >> $shh 2>> $log_it
-ln -s /usr/lib/insserv/insserv /sbin/insserv >> $shh 2>> $log_it
-insserv /etc/init.d/aaa_splashscreen >> $shh 2>> $log_it
+ln -s sanickiosk/lib/plymouth/themes/sanickiosk/sanickiosk.plymouth /lib/plymouth/themes/sanickiosk/sanickiosk.plymouth >> $shh 2>> $log_it
+update-alternatives --install /lib/plymouth/themes/default.plymouth default.plymouth /lib/plymouth/themes/sanickiosk/sanickiosk.plymouth 10 >> $shh 2>> $log_it
+update-alternatives --config default.plymouth
+update-initramfs -u >> $shh 2>> $log_it
 echo -e "${green}Done!${nc}"
 
 echo -e "${red}Configuring the screensaver ${yellow}(XScreenSaver)${red}...${nc}"
