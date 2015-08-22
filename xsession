@@ -67,31 +67,26 @@ browser_extensions="sanickiosk/chrome_extensions/sanickiosk/0.1,sanickiosk/chrom
 
 xterm
 
+$SanicKiosk_app_id="cjbobohihjmkahleinnaconpnlffckbd"
 # Relaunch browser if closed
 #while true; do
-	# Start Headless Chrome
-	xvfb-run chromium-browser --single-process --load-extension=$browser_extensions &
-
-	sleep 6s
-
-	# Find Chrome extension app id as function in case needed again
-	find_app_id () {
-		str=`cat .config/chromium/Default/Preferences` # Read file as string
-		IFS=’\"’ read -ra blocks <<< "$str" echo ${blocks[1]} # Convert string to array
-		for i in "${!blocks[@]}"; do
-			 if [[ "${blocks[$i]}" = "${1}" ]]; then
-					 index=${i}
-			 fi
-		done
-		index=`expr $index - 6` # The app id is 6 delimeters prior to the app name
-		app_id=${blocks[$index]}
-		echo $app_id
-	}
-	# Get SanicKiosk extension app id
-	SanicKiosk_app_id=`find_app_id 'SanicKiosk'`
-
 	# Start Chrome
-	chromium-browser --new-window --app-id=$SanicKiosk_app_id # Start Chrome so SanicKiosk receives an app id
+	chromium-browser --load-extension=$browser_extensions --app-id=$SanicKiosk_app_id # Start Chrome so SanicKiosk receives an app id
 
-	sleep 5s
+#	sleep 5s
 #done
+# Find Chrome extension app id as function in case needed again
+find_app_id () {
+	str=`cat .config/chromium/Default/Preferences` # Read file as string
+	IFS=’\"’ read -ra blocks <<< "$str" echo ${blocks[1]} # Convert string to array
+	for i in "${!blocks[@]}"; do
+		 if [[ "${blocks[$i]}" = "${1}" ]]; then
+				 index=${i}
+		 fi
+	done
+	index=`expr $index - 6` # The app id is 6 delimeters prior to the app name
+	app_id=${blocks[$index]}
+	echo $app_id
+}
+# Get SanicKiosk extension app id
+#	SanicKiosk_app_id=`find_app_id 'SanicKiosk'`
