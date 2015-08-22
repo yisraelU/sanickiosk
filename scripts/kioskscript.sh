@@ -98,10 +98,10 @@ sed -i -e 's/NODM_USER=root/NODM_USER=sanickiosk/g' /etc/default/nodm >> $shh 2>
 echo -e "${green}Done!${nc}"
 
 echo -e "${red}Configuring the splash screen ${yellow}(FrameBuffer Image viewer)${red}...${nc}"
-# Link aaa
-ln -s sanickiosk/splash/aaa /etc/init.d/aaa >> $shh 2>> $log_it
+# Link aaa_splashscreen
+ln -s sanickiosk/splash/aaa_splashscreen /etc/init.d/aaa_splashscreen >> $shh 2>> $log_it
 ln -s /usr/lib/insserv/insserv /sbin/insserv >> $shh 2>> $log_it
-insserv /etc/init.d/aaa >> $shh 2>> $log_it
+insserv /etc/init.d/aaa_splashscreen >> $shh 2>> $log_it
 echo -e "${green}Done!${nc}"
 
 echo -e "${red}Configuring the screensaver ${yellow}(XScreenSaver)${red}...${nc}"
