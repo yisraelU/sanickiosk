@@ -1,14 +1,15 @@
 #!/bin/bash
 
-# Import system info
-. sanickiosk/config/system.cfg
-
 # Import variables
 . sanickiosk/config/screensaver.cfg
 . sanickiosk/config/browser.cfg
 
+# Set Log
+touch sanickiosk/logs/sanickiosk.log # Create log file
+log_it="sanickiosk/logs/sanickiosk.log"
+
 # Set correct user and group permissions for home directory
-chown -R $UID:$UID $HOME >> $shh 2>> $log_it
+chown -R $UID:$UID $HOME >> $log_it
 
 # Uncomment to run touchscreen calibration on next boot
 #xterm xinput_calibrator
@@ -22,18 +23,18 @@ fi
 if [ $xscreensaver_enable = "True" ]
 then
 	# Look for new screensaver images
-	rm ~/.xscreensaver-getimage.cache
+	rm ~/.xscreensaver-getimage.cache >> $log_it
 
 	# Write latest screensaver switches
-	bash sanickiosk/scripts/set_glslideshow_switches.sh
+	bash sanickiosk/scripts/set_glslideshow_switches.sh >> $log_it
 
 	# Read latest screensaver switches
-	screensaver_switches=`cat sanickiosk/config/glslideshow_switches.cfg`
+	screensaver_switches=`cat sanickiosk/config/glslideshow_switches.cfg` >> $log_it
 
 	# Set screensaver timeout
-	sed -i "/timeout:/c\timeout:	$xscreensaver_idle" ~/.xscreensaver
+	sed -i "/timeout:/c\timeout:	$xscreensaver_idle" ~/.xscreensaver >> $log_it
 	# Set glslideshow switches
-	sed -i "/programs:/c\programs:	glslideshow -root $screensaver_switches" ~/.xscreensaver
+	sed -i "/programs:/c\programs:	glslideshow -root $screensaver_switches" ~/.xscreensaver >> $log_it
 	xscreensaver -nosplash &
 else
 	xset s off # Disable screensaver
