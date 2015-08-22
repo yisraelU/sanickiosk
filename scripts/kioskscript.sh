@@ -78,6 +78,7 @@ xorg nodm matchbox-window-manager # GUI
   unclutter # Hide cursor
   wpasupplicant # Secure wireless support
   alsa # Audio
+  fbi # Splash screen
 )
 apt-get -qy install --no-install-recommends ${packagelist[@]} >> $shh 2>> $log_it
 echo -e "${green}Done!${nc}"

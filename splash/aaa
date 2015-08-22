@@ -3,7 +3,7 @@
 path=`find /home/ -name "sanickiosk_splash.png"`
 
 do_start () {
-    /usr/bin/fbi -T 1 -noverbose -a $path
+    /usr/bin/fbi -timeout 20 -T 1 -noverbose -a $path
     exit 0
 }
 
