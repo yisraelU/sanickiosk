@@ -58,21 +58,33 @@ fi
 # Start window manager
 matchbox-window-manager -use_titlebar no &
 
-# Start Chrome
-browser_extensions="sanickiosk/chrome_extensions/sanickiosk/0.1,sanickiosk/chrome_extensions/app_autostart/1.12.14.2_0,sanickiosk/chrome_extensions/blocksi/1.0.101_0,sanickiosk/chrome_extensions/virtual_keyboard/1.10.7_0"
+# Set browser switches
 # browser_switches="--disable --disable-translate --disable-infobars --disable-suggestions-service --disable-save-password-bubble"
 # " --disk-cache-dir=$CHROMIUM_TEMP/cache/ --user-data-dir=$CHROMIUM_TEMP/user_data/ --start-maximized"
 
-# Need to minimize this
-chromium-browser --load-extension=$browser_extensions --kiosk http://sanickiosk.org &
+# Set browser extensions
+browser_extensions="sanickiosk/chrome_extensions/sanickiosk/0.1,sanickiosk/chrome_extensions/app_autostart/1.12.14.2_0,sanickiosk/chrome_extensions/blocksi/1.0.101_0,sanickiosk/chrome_extensions/virtual_keyboard/1.10.7_0"
 
-sleep 6s
+# Relaunch browser if closed
+while true; do
+	# Start Headless Chrome
+	xvfb-run chromium-browser --load-extension=$browser_extensions &
 
-# Get SanicKiosk extension app id
-str=`cat .config/chromium/Default/Preferences` # Read file as string
-IFS=’\"’ read -ra blocks <<< "$str" echo ${blocks[1]} # Convert string to array
-# As function in case needed again
+#	sleep 6s
+
+	# Get SanicKiosk extension app id
+	SanicKiosk_app_id=`find_app_id 'SanicKiosk'`
+
+	# Start Chrome
+	chromium-browser --app-id=$SanicKiosk_app_id # Start Chrome so SanicKiosk receives an app id
+
+	sleep 5s
+done
+
+# Find Chrome extension app id as function in case needed again
 find_app_id () {
+	str=`cat .config/chromium/Default/Preferences` # Read file as string
+	IFS=’\"’ read -ra blocks <<< "$str" echo ${blocks[1]} # Convert string to array
 	for i in "${!blocks[@]}"; do
 		 if [[ "${blocks[$i]}" = "${1}" ]]; then
 				 index=${i}
@@ -82,13 +94,3 @@ find_app_id () {
 	app_id=${blocks[$index]}
 	echo $app_id
 }
-# Call function
-SanicKiosk_app_id=`find_app_id 'SanicKiosk'`
-
-chromium-browser --app-id=$SanicKiosk_app_id # Start Chrome so SanicKiosk receives an app id
-
-# Relaunch browser if closed
-#while true; do
-#	chromium-browser --app-id=$SanicKiosk_app_id # Start Chrome so SanicKiosk receives an app id
-#	sleep 5s
-#done
