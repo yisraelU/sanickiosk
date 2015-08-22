@@ -58,20 +58,18 @@ fi
 # Start window manager
 matchbox-window-manager -use_titlebar no &
 
-# Set browser switches
-# browser_switches="--disable --disable-translate --disable-infobars --disable-suggestions-service --disable-save-password-bubble"
-# " --disk-cache-dir=$CHROMIUM_TEMP/cache/ --user-data-dir=$CHROMIUM_TEMP/user_data/ --start-maximized"
-
-# Set browser extensions
-browser_extensions="sanickiosk/chrome_extensions/blocksi/1.0.101_0,sanickiosk/chrome_extensions/virtual_keyboard/1.10.7_0"
-browser_apps="sanickiosk/chrome_extensions/sanickiosk/0.1,sanickiosk/chrome_extensions/blocksi/1.0.101_0,sanickiosk/chrome_extensions/virtual_keyboard/1.10.7_0"
+# Look for latest SanicKiosk Chrome extension
+#sanickiosk_extension="sanickiosk/chrome_extension/sanickiosk/0.1"
+array=(sanickiosk/chrome_extension/sanickiosk/*)
+for dir in "${array[@]}"; do
+IFS=$'\n'
+sanickiosk_extension=`${array[*]}" | sort -nr | head -n1`
 
 xterm
 
 # Relaunch browser if closed
 while true; do
 	# Start Chrome
-	chromium-browser --load-extension=$browser_extensions --load-and-launch-app=sanickiosk/chrome_extensions/sanickiosk/0.1
-	#chromium-browser --load-apps=$browser_apps
+	chromium-browser --load-and-launch-app=$sanickiosk_extension
 	sleep 5s
 done
