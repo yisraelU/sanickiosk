@@ -45,6 +45,8 @@ mkdir sanickiosk/screensavers >> $shh 2>> $log_it
 
 # Get operating system information
 . /etc/os-release
+. /etc/lsb_release
+
 echo -e "${red}Installing Sanickiosk on $NAME $VERSION.${nc}\n"
 
 echo -e "${red}Performing operating system updates ${yellow}(this may take a while)${red}...${nc}"
