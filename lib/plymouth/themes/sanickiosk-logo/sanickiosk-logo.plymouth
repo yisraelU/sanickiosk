@@ -1,0 +1,8 @@
+[Plymouth Theme]
+Name=SanicKiosk Logo
+Description=A theme that features a blank background with a logo.
+ModuleName=script
+
+[script]
+ImageDir=/lib/plymouth/themes/sanickiosk-logo
+ScriptFile=/lib/plymouth/themes/sanickiosk-logo/sanickiosk-logo.script
