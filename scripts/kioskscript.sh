@@ -100,9 +100,9 @@ sed -i -e 's/NODM_USER=root/NODM_USER=sanickiosk/g' /etc/default/nodm >> $shh 2>
 echo -e "${green}Done!${nc}"
 
 echo -e "${red}Configuring the splash screen...${nc}"
-cp sanickiosk/lib/plymouth/themes/sanickiosk-logo /lib/plymouth/themes/ >> $shh 2>> $log_it
-ln -sf /lib/plymouth/themes/sanickiosk-logo/sanickiosk-logo.plymouth /etc/alternatives/default.plymouth
-ln -sf /lib/plymouth/themes/sanickiosk-logo/sanickiosk-logo.grub /etc/alternatives/default.plymouth.grub
+cp -r sanickiosk/lib/plymouth/themes/sanickiosk-logo /lib/plymouth/themes/ >> $shh 2>> $log_it
+ln -sf /lib/plymouth/themes/sanickiosk-logo/sanickiosk-logo.plymouth /etc/alternatives/default.plymouth >> $shh 2>> $log_it
+ln -sf /lib/plymouth/themes/sanickiosk-logo/sanickiosk-logo.grub /etc/alternatives/default.plymouth.grub >> $shh 2>> $log_it
 #update-alternatives --install /lib/plymouth/themes/default.plymouth default.plymouth /lib/plymouth/themes/sanickiosk-logo/sanickiosk-logo.plymouth 10 >> $shh 2>> $log_it
 #update-alternatives --config default.plymouth >> $shh 2>> $log_it
 #update-initramfs -u >> $shh 2>> $log_it
