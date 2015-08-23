@@ -99,11 +99,13 @@ sed -i -e 's/NODM_ENABLED=false/NODM_ENABLED=true/g' /etc/default/nodm >> $shh 2
 sed -i -e 's/NODM_USER=root/NODM_USER=sanickiosk/g' /etc/default/nodm >> $shh 2>> $log_it
 echo -e "${green}Done!${nc}"
 
-echo -e "${red}Configuring the splash screen ${yellow}(FrameBuffer Image viewer)${red}...${nc}"
+echo -e "${red}Configuring the splash screen...${nc}"
 ln -s sanickiosk/lib/plymouth/themes/sanickiosk/sanickiosk.plymouth /lib/plymouth/themes/sanickiosk/sanickiosk.plymouth >> $shh 2>> $log_it
 update-alternatives --install /lib/plymouth/themes/default.plymouth default.plymouth /lib/plymouth/themes/sanickiosk/sanickiosk.plymouth 10 >> $shh 2>> $log_it
 update-alternatives --config default.plymouth
 update-initramfs -u >> $shh 2>> $log_it
+#sudo ln -sf /lib/plymouth/themes/my-theme/my-theme.plymouth /etc/alternatives/default.plymouth
+#sudo ln -sf /lib/plymouth/themes/my-theme/my-theme.grub /etc/alternatives/default.plymouth.grub
 echo -e "${green}Done!${nc}"
 
 echo -e "${red}Configuring the screensaver ${yellow}(XScreenSaver)${red}...${nc}"
