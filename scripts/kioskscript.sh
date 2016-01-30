@@ -73,7 +73,7 @@ clear
 
 if ask "Run in verbose mode?" N; then
   echo -e "${yellow}Verbose mode${nc}\n"
-  shh="fd 1"
+  shh="/dev/tty"
 else
   echo -e "${yellow}Quiet mode${nc}\n"
   shh="/dev/null"
