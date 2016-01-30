@@ -118,7 +118,7 @@ packagelist=(
   ajenti # Browser-based system administration tool
   systemback-cli # Systemback custom image maker
   xscreensaver xscreensaver-data-extra xscreensaver-gl-extra libwww-perl # Screensaver
-  xserver-xorg-input-multitouch xinput-calibrator # Touchscreen support
+  #xserver-xorg-input-multitouch xinput-calibrator # Touchscreen support
   unclutter # Hide cursor
   wpasupplicant # Secure wireless support
   alsa # Audio
@@ -127,7 +127,7 @@ apt-get -qy install --no-install-recommends ${packagelist[@]} $shh 2>> $log_it
 # Ajenti
 #wget -q http://repo.ajenti.org/debian/key -O- | apt-key add - $shh 2>> $log_it
 #echo 'deb http://repo.ajenti.org/ng/debian main main ubuntu' > /etc/apt/sources.list.d/ajenti.list
-curl https://raw.githubusercontent.com/ajenti/ajenti/master/scripts/install.sh > install.sh && sudo bash install.sh
+curl https://raw.githubusercontent.com/ajenti/ajenti/master/scripts/install.sh > sanickiosk/scripts/install_ajenti.sh && bash sanickiosk/scripts/install_ajenti.sh $shh 2>> $log_it
 echo -e "${green}Done!${nc}"
 
 echo -e "${red}Disabling root recovery mode...${nc}"
