@@ -52,17 +52,17 @@ ask() {
   done
 }
 
-# Root?
-if [[ $UID != 0 ]]; then
-  echo -e "${red}You must run kioskscript using the command: ${yellow}sudo ./sanickiosk/scripts/kioskscript.sh${nc}\n"
-  exit 1
-fi
-
 # Pretty colors
 red='\e[1;31m'
 green='\e[1;32m'
 yellow='\e[1;33m'
 nc='\e[0m' # No color
+
+# Root?
+if [[ $UID != 0 ]]; then
+  echo -e "${red}You must run kioskscript using the command: ${yellow}sudo ./sanickiosk/scripts/kioskscript.sh${nc}\n"
+  exit 1
+fi
 
 # Set Log
 mkdir sanickiosk/logs && touch sanickiosk/logs/kioskscript.log # Create log directory and file
