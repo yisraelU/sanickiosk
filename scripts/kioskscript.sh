@@ -64,8 +64,9 @@ echo -e "${green}Done!${nc}"
 
 echo -e "${red}Downloading and installing software ${yellow}(this will take a while)${red}...${nc}"
 # Ajenti
-wget -q http://repo.ajenti.org/debian/key -O- | apt-key add - >> $shh 2>> $log_it
-echo 'deb http://repo.ajenti.org/ng/debian main main ubuntu' > /etc/apt/sources.list.d/ajenti.list
+#wget -q http://repo.ajenti.org/debian/key -O- | apt-key add - >> $shh 2>> $log_it
+#echo 'deb http://repo.ajenti.org/ng/debian main main ubuntu' > /etc/apt/sources.list.d/ajenti.list
+curl https://raw.githubusercontent.com/ajenti/ajenti/master/scripts/install.sh > install.sh && sudo bash install.sh
 # Systemback
 apt-key adv --keyserver keyserver.ubuntu.com --recv-keys 73C62A1B >> $shh 2>> $log_it
 echo -e "deb http://ppa.launchpad.net/nemh/systemback/ubuntu $DISTRIB_CODENAME main" > /etc/apt/sources.list.d/systemback.list
