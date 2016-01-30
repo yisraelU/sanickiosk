@@ -63,10 +63,6 @@ apt-get -q clean >> $shh 2>> $log_it
 echo -e "${green}Done!${nc}"
 
 echo -e "${red}Downloading and installing software ${yellow}(this will take a while)${red}...${nc}"
-# Ajenti
-#wget -q http://repo.ajenti.org/debian/key -O- | apt-key add - >> $shh 2>> $log_it
-#echo 'deb http://repo.ajenti.org/ng/debian main main ubuntu' > /etc/apt/sources.list.d/ajenti.list
-curl https://raw.githubusercontent.com/ajenti/ajenti/master/scripts/install.sh > install.sh && sudo bash install.sh
 # Systemback
 apt-key adv --keyserver keyserver.ubuntu.com --recv-keys 73C62A1B >> $shh 2>> $log_it
 echo -e "deb http://ppa.launchpad.net/nemh/systemback/ubuntu $DISTRIB_CODENAME main" > /etc/apt/sources.list.d/systemback.list
@@ -74,7 +70,8 @@ echo -e "deb http://ppa.launchpad.net/nemh/systemback/ubuntu $DISTRIB_CODENAME m
 echo -e "deb http://archive.canonical.com/ubuntu/ $DISTRIB_CODENAME partner" > /etc/apt/sources.list.d/canonical_partner.list
 apt-get -q update >> $shh 2>> $log_it
 packagelist=(
-xorg nodm matchbox-window-manager # GUI
+  curl
+  xorg nodm matchbox-window-manager # GUI
   software-properties-common python-software-properties # Enable PPA installs
   #tasksel # Task selection
   chromium-browser # Browser
@@ -88,6 +85,10 @@ xorg nodm matchbox-window-manager # GUI
   alsa # Audio
 )
 apt-get -qy install --no-install-recommends ${packagelist[@]} >> $shh 2>> $log_it
+# Ajenti
+#wget -q http://repo.ajenti.org/debian/key -O- | apt-key add - >> $shh 2>> $log_it
+#echo 'deb http://repo.ajenti.org/ng/debian main main ubuntu' > /etc/apt/sources.list.d/ajenti.list
+curl https://raw.githubusercontent.com/ajenti/ajenti/master/scripts/install.sh > install.sh && sudo bash install.sh
 echo -e "${green}Done!${nc}"
 
 echo -e "${red}Disabling root recovery mode...${nc}"
