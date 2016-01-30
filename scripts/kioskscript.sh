@@ -116,7 +116,7 @@ packagelist=(
   #tasksel # Task selection
   chromium-browser # Browser
   adobe-flashplugin icedtea-7-plugin ttf-liberation # Flash, Java, and fonts
-  ajenti # Browser-based system administration tool
+  #ajenti # Browser-based system administration tool
   systemback-cli # Systemback custom image maker
   xscreensaver xscreensaver-data-extra xscreensaver-gl-extra libwww-perl # Screensaver
   #xserver-xorg-input-multitouch xinput-calibrator # Touchscreen support
