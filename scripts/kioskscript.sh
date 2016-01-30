@@ -14,7 +14,7 @@
 ## To use this script:
 ## sudo apt-get install -y git
 ## git clone https://github.com/sanicki/sanickiosk
-## sudo ./sanickiosk/scripts/kioskscript.sh
+## sudo -H ./sanickiosk/scripts/kioskscript.sh
 ##
 ## If testing in Virtualbox:
 ## sudo apt-get install -y virtualbox-guest-utils
@@ -68,21 +68,6 @@ nc='\e[0m' # No color
 mkdir sanickiosk/logs && touch sanickiosk/logs/kioskscript.log # Create log directory and file
 log_it="sanickiosk/logs/kioskscript.log"
 
-if ask "Run in verbose mode?" N; then
-  echo -e "${yellow}Verbose mode${nc}\n"
-  shh="/dev/tty"
-else
-  echo -e "${yellow}Quiet mode${nc}\n"
-  shh="/dev/null"
-fi
-
-# Begin
-clear
-
-# Make empty directories
-mkdir sanickiosk/screensavers >> $shh 2>> $log_it
-mkdir sanickiosk/settings >> $shh 2>> $log_it
-
 # Get operating system information
 . /etc/os-release
 . /etc/lsb-release
@@ -91,6 +76,18 @@ mkdir sanickiosk/settings >> $shh 2>> $log_it
 user=`who am i | awk '{print $1}'`
 
 echo -e "${red}Installing Sanickiosk on $NAME $VERSION.${nc}\n"
+
+if ask "${red}Run in verbose mode?${nc}" N; then
+  echo -e "${yellow}Verbose mode${nc}\n"
+  shh="/dev/tty"
+else
+  echo -e "${yellow}Quiet mode${nc}\n"
+  shh="/dev/null"
+fi
+
+# Make empty directories
+mkdir sanickiosk/screensavers >> $shh 2>> $log_it
+mkdir sanickiosk/settings >> $shh 2>> $log_it
 
 echo -e "${red}Performing operating system updates ${yellow}(this may take a while)${red}...${nc}"
 # Refresh
@@ -138,7 +135,7 @@ echo -e "${green}Done!${nc}"
 
 echo -e "${red}Enabling SanicKiosk autologin...${nc}"
 sed -i -e 's/NODM_ENABLED=false/NODM_ENABLED=true/g' /etc/default/nodm >> $shh 2>> $log_it
-sed -i -e 's/NODM_USER=root/NODM_USER=sanickiosk/g' /etc/default/nodm >> $shh 2>> $log_it
+sed -i -e 's/NODM_USER=root/NODM_USER='$user'/g' /etc/default/nodm >> $shh 2>> $log_it
 echo -e "${green}Done!${nc}"
 
 echo -e "${red}Configuring the splash screen...${nc}"
@@ -189,10 +186,9 @@ echo -e "${green}Done!${nc}\n"
 
 echo -e "${red}Installation log saved to ${yellow}sanickiosk/logs/kioskscript.log${red}.${nc}"
 
-ask "${green}\nDisplay install log?${nc}" && less $log_it
-
 if ask "${green}\nReboot?${nc}" Y; then
     reboot ;;
 else
-    exit 1 ;;
+  ask "${green}Display install log?${nc}" && less $log_it
+  exit 1 ;;
 fi
