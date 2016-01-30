@@ -80,7 +80,7 @@ user=`who am i | awk '{print $1}'`
 
 echo -e "${red}Installing Sanickiosk on $NAME $VERSION.${nc}\n"
 
-if ask "${red}Run in verbose mode?${nc}" N; then
+if ask ${red}"Run in verbose mode?"${nc} N; then
   echo -e "${yellow}Verbose mode${nc}\n"
   shh="/dev/tty"
 else
@@ -138,7 +138,7 @@ echo -e "${green}Done!${nc}"
 
 echo -e "${red}Enabling SanicKiosk autologin...${nc}"
 sed -i -e 's/NODM_ENABLED=false/NODM_ENABLED=true/g' /etc/default/nodm >> $shh 2>> $log_it
-sed -i -e 's/NODM_USER=root/NODM_USER='$user'/g' /etc/default/nodm >> $shh 2>> $log_it
+sed -i -e "s/NODM_USER=root/NODM_USER=$user/g" /etc/default/nodm >> $shh 2>> $log_it
 echo -e "${green}Done!${nc}"
 
 echo -e "${red}Configuring the splash screen...${nc}"
