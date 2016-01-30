@@ -73,14 +73,15 @@ clear
 
 if ask "Run in verbose mode?" N; then
   echo -e "${yellow}Verbose mode${nc}\n"
+  shh="fd 1"
 else
   echo -e "${yellow}Quiet mode${nc}\n"
-  shh=">> /dev/null"
+  shh="/dev/null"
 fi
 
 # Make empty directories
-mkdir sanickiosk/screensavers $shh 2>> $log_it
-mkdir sanickiosk/settings $shh 2>> $log_it
+mkdir sanickiosk/screensavers >> $shh 2>> $log_it
+mkdir sanickiosk/settings >> $shh 2>> $log_it
 
 # Get operating system information
 . /etc/os-release
@@ -93,21 +94,21 @@ echo -e "${red}Installing Sanickiosk on $NAME $VERSION.${nc}\n"
 
 echo -e "${red}Performing operating system updates ${yellow}(this may take a while)${red}...${nc}"
 # Refresh
-apt-get -q update $shh 2>> $log_it
+apt-get -q update >> $shh 2>> $log_it
 # Download & Install
-apt-get -q upgrade $shh 2>> $log_it
+apt-get -q upgrade >> $shh 2>> $log_it
 # Clean
-apt-get -q autoremove $shh 2>> $log_it
-apt-get -q clean $shh 2>> $log_it
+apt-get -q autoremove >> $shh 2>> $log_it
+apt-get -q clean >> $shh 2>> $log_it
 echo -e "${green}Done!${nc}"
 
 echo -e "${red}Downloading and installing software ${yellow}(this will take a while)${red}...${nc}"
 # Systemback
-apt-key adv --keyserver keyserver.ubuntu.com --recv-keys 73C62A1B $shh 2>> $log_it
+apt-key adv --keyserver keyserver.ubuntu.com --recv-keys 73C62A1B >> $shh 2>> $log_it
 echo -e "deb http://ppa.launchpad.net/nemh/systemback/ubuntu $DISTRIB_CODENAME main" > /etc/apt/sources.list.d/systemback.list
 # Flash
 echo -e "deb http://archive.canonical.com/ubuntu/ $DISTRIB_CODENAME partner" > /etc/apt/sources.list.d/canonical_partner.list
-apt-get -q update $shh 2>> $log_it
+apt-get -q update >> $shh 2>> $log_it
 packagelist=(
   curl
   xorg nodm matchbox-window-manager # GUI
@@ -123,37 +124,37 @@ packagelist=(
   wpasupplicant # Secure wireless support
   alsa # Audio
 )
-apt-get -qy install --no-install-recommends ${packagelist[@]} $shh 2>> $log_it
+apt-get -qy install --no-install-recommends ${packagelist[@]} >> $shh 2>> $log_it
 # Ajenti
-#wget -q http://repo.ajenti.org/debian/key -O- | apt-key add - $shh 2>> $log_it
+#wget -q http://repo.ajenti.org/debian/key -O- | apt-key add - >> $shh 2>> $log_it
 #echo 'deb http://repo.ajenti.org/ng/debian main main ubuntu' > /etc/apt/sources.list.d/ajenti.list
-curl https://raw.githubusercontent.com/ajenti/ajenti/master/scripts/install.sh > sanickiosk/scripts/install_ajenti.sh && bash sanickiosk/scripts/install_ajenti.sh $shh 2>> $log_it
+curl https://raw.githubusercontent.com/ajenti/ajenti/master/scripts/install.sh > sanickiosk/scripts/install_ajenti.sh && bash sanickiosk/scripts/install_ajenti.sh >> $shh 2>> $log_it
 echo -e "${green}Done!${nc}"
 
 echo -e "${red}Disabling root recovery mode...${nc}"
-sed -i -e 's/#GRUB_DISABLE_RECOVERY/GRUB_DISABLE_RECOVERY/g' /etc/default/grub $shh 2>> $log_it
-update-grub $shh 2>> $log_it
+sed -i -e 's/#GRUB_DISABLE_RECOVERY/GRUB_DISABLE_RECOVERY/g' /etc/default/grub >> $shh 2>> $log_it
+update-grub >> $shh 2>> $log_it
 echo -e "${green}Done!${nc}"
 
 echo -e "${red}Enabling SanicKiosk autologin...${nc}"
-sed -i -e 's/NODM_ENABLED=false/NODM_ENABLED=true/g' /etc/default/nodm $shh 2>> $log_it
-sed -i -e 's/NODM_USER=root/NODM_USER=sanickiosk/g' /etc/default/nodm $shh 2>> $log_it
+sed -i -e 's/NODM_ENABLED=false/NODM_ENABLED=true/g' /etc/default/nodm >> $shh 2>> $log_it
+sed -i -e 's/NODM_USER=root/NODM_USER=sanickiosk/g' /etc/default/nodm >> $shh 2>> $log_it
 echo -e "${green}Done!${nc}"
 
 echo -e "${red}Configuring the splash screen...${nc}"
-cp -r sanickiosk/lib/plymouth/themes/sanickiosk-logo /lib/plymouth/themes/ $shh 2>> $log_it
-ln -sf /lib/plymouth/themes/sanickiosk-logo/sanickiosk-logo.plymouth /etc/alternatives/default.plymouth $shh 2>> $log_it
-ln -sf /lib/plymouth/themes/sanickiosk-logo/sanickiosk-logo.grub /etc/alternatives/default.plymouth.grub $shh 2>> $log_it
-#update-alternatives --install /lib/plymouth/themes/default.plymouth default.plymouth /lib/plymouth/themes/sanickiosk-logo/sanickiosk-logo.plymouth 10 $shh 2>> $log_it
-#update-alternatives --config default.plymouth $shh 2>> $log_it
-#update-initramfs -u $shh 2>> $log_it
+cp -r sanickiosk/lib/plymouth/themes/sanickiosk-logo /lib/plymouth/themes/ >> $shh 2>> $log_it
+ln -sf /lib/plymouth/themes/sanickiosk-logo/sanickiosk-logo.plymouth /etc/alternatives/default.plymouth >> $shh 2>> $log_it
+ln -sf /lib/plymouth/themes/sanickiosk-logo/sanickiosk-logo.grub /etc/alternatives/default.plymouth.grub >> $shh 2>> $log_it
+#update-alternatives --install /lib/plymouth/themes/default.plymouth default.plymouth /lib/plymouth/themes/sanickiosk-logo/sanickiosk-logo.plymouth 10 >> $shh 2>> $log_it
+#update-alternatives --config default.plymouth >> $shh 2>> $log_it
+#update-initramfs -u >> $shh 2>> $log_it
 echo -e "${green}Done!${nc}"
 
 echo -e "${red}Configuring the screensaver ${yellow}(XScreenSaver)${red}...${nc}"
 # Link .xscreensaver
-ln -s sanickiosk/xscreensaver .xscreensaver $shh 2>> $log_it
+ln -s sanickiosk/xscreensaver .xscreensaver >> $shh 2>> $log_it
 # Add a sample image
-wget -q http://beginwithsoftware.com/wallpapers/archive/Various/images/free_desktop_wallpaper_logo_space_for_rent_1024x768.gif -O sanickiosk/screensavers/deleteme.gif $shh 2>> $log_it
+wget -q http://beginwithsoftware.com/wallpapers/archive/Various/images/free_desktop_wallpaper_logo_space_for_rent_1024x768.gif -O sanickiosk/screensavers/deleteme.gif >> $shh 2>> $log_it
 echo -e "${green}Done!${nc}"
 
 echo -e "${red}Configuring the browser ${yellow}(Chromium)${red}...${nc}"
@@ -162,24 +163,24 @@ echo -e "${green}Done!${nc}"
 
 echo -e "${red}Setting up the SanicKiosk scripts...${nc}"
 # Link .xsession
-ln -s sanickiosk/xsession .xsession $shh 2>> $log_it
+ln -s sanickiosk/xsession .xsession >> $shh 2>> $log_it
 # Set correct user and group permissions for home directory
-chown -R $user:$user $HOME $shh 2>> $log_it
+chown -R $user:$user $HOME >> $shh 2>> $log_it
 # Unnecessarily making sure all scripts to exexutable
-find sanickiosk/scripts -type f -exec chmod +x {} \; $shh 2>> $log_it
+find sanickiosk/scripts -type f -exec chmod +x {} \; >> $shh 2>> $log_it
 echo -e "${green}Done!${nc}"
 
 echo -e "${red}Configuring the browser-based system administration tool ${yellow}(Ajenti)${red}...${nc}"
-service ajenti stop $shh 2>> $log_it
+service ajenti stop >> $shh 2>> $log_it
 # Changing to default https port
-sed -i 's/"port": 8000/"port": 443/' /etc/ajenti/config.json $shh 2>> $log_it
+sed -i 's/"port": 8000/"port": 443/' /etc/ajenti/config.json >> $shh 2>> $log_it
 # Linking SanicKiosk plugins to Ajenti
-ln -s sanickiosk/ajenti_plugins/sanickiosk_browser /var/lib/ajenti/plugins/sanickiosk_browser $shh 2>> $log_it
-ln -s sanickiosk/ajenti_plugins/sanickiosk_screensaver /var/lib/ajenti/plugins/sanickiosk_screensaver $shh 2>> $log_it
+ln -s sanickiosk/ajenti_plugins/sanickiosk_browser /var/lib/ajenti/plugins/sanickiosk_browser >> $shh 2>> $log_it
+ln -s sanickiosk/ajenti_plugins/sanickiosk_screensaver /var/lib/ajenti/plugins/sanickiosk_screensaver >> $shh 2>> $log_it
 echo -e "${green}Done!${nc}"
 
 echo -e "${red}Enabling audio...${nc}"
-adduser $user audio $shh 2>> $log_it
+adduser $user audio >> $shh 2>> $log_it
 echo -e "${green}Done!${nc}"
 
 echo -e "${red}Locking down the SanicKiosk user...${nc}"
