@@ -68,6 +68,9 @@ nc='\e[0m' # No color
 mkdir sanickiosk/logs && touch sanickiosk/logs/kioskscript.log # Create log directory and file
 log_it="sanickiosk/logs/kioskscript.log"
 
+# Begin
+clear
+
 # Get operating system information
 . /etc/os-release
 . /etc/lsb-release
@@ -189,6 +192,6 @@ echo -e "${red}Installation log saved to ${yellow}sanickiosk/logs/kioskscript.lo
 if ask "${green}\nReboot?${nc}" Y; then
     reboot ;;
 else
-  ask "${green}Display install log?${nc}" && less $log_it
+  ask "${green}\nDisplay install log?${nc}" && less $log_it
   exit 1 ;;
 fi
