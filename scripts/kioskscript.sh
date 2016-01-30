@@ -68,9 +68,6 @@ nc='\e[0m' # No color
 mkdir sanickiosk/logs && touch sanickiosk/logs/kioskscript.log # Create log directory and file
 log_it="sanickiosk/logs/kioskscript.log"
 
-# Begin
-clear
-
 if ask "Run in verbose mode?" N; then
   echo -e "${yellow}Verbose mode${nc}\n"
   shh="/dev/tty"
@@ -78,6 +75,9 @@ else
   echo -e "${yellow}Quiet mode${nc}\n"
   shh="/dev/null"
 fi
+
+# Begin
+clear
 
 # Make empty directories
 mkdir sanickiosk/screensavers >> $shh 2>> $log_it
@@ -188,6 +188,8 @@ echo -e "${red}Locking down the SanicKiosk user...${nc}"
 echo -e "${green}Done!${nc}\n"
 
 echo -e "${red}Installation log saved to ${yellow}sanickiosk/logs/kioskscript.log${red}.${nc}"
+
+ask "${green}\nDisplay install log?${nc}" && less $log_it
 
 if ask "${green}\nReboot?${nc}" Y; then
     reboot ;;
